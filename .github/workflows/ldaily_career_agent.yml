@@ -1,0 +1,30 @@
+name: Daily Morning & Evening Career Agent Auto-Sync & Version Control
+
+on:
+  schedule:
+    - cron: '30 2 * * *'
+    - cron: '30 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute-and-version-control:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run Unit & Integration Tests
+        run: python3 test_career_agent_system.py
+      - name: Execute Orchestrator & Auto-Version Vault Artifacts
+        run: |
+          git config user.name "Kodimurthy Bhalavardan (Career Agent Bot)"
+          git config user.email "kodimurthybalu@gmail.com"
+          TAG_NAME="v3.0.$(date +%Y%m%d%H%M)"
+          python3 career_agent_system.py --mode morning-digest --auto-tag "$TAG_NAME"
+          git push origin main --tags || true
