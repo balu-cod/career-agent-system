@@ -1,5 +1,100 @@
 #!/usr/bin/env python3
+"""#!/usr/bin/env python3
 """
+Unit tests for CAREER_AGENT_SYSTEM (v3.0.0)
+Testing VaultAgent, MemoryAgent, CertificationAgent, JobSearchAgent, SkillBuildingAgent, GitVersionController, and OrchestratorAgent.
+"""
+
+import os
+import shutil
+import tempfile
+import unittest
+
+from career_agent_system import (
+    VaultAgent,
+    MemoryAgent,
+    CertificationAgent,
+    JobSearchAgent,
+    SkillBuildingAgent,
+    GitVersionController,
+    OrchestratorAgent,
+    UserProfile,
+)
+
+
+class TestVaultAgent(unittest.TestCase):
+    def setUp(self):
+        self.test_dir = tempfile.mkdtemp()
+        self.vault = VaultAgent(vault_dir=self.test_dir)
+
+    def tearDown(self):
+        shutil.rmtree(self.test_dir)
+
+    def test_save_and_load_artifact_allowed(self):
+        data = {"key": "value"}
+        filepath = self.vault.save_artifact("test_doc.json", data, classification="PUBLIC")
+        self.assertTrue(os.path.exists(filepath))
+        loaded = self.vault.load_artifact("test_doc.json")
+        self.assertEqual(loaded, data)
+
+
+class TestMemoryAgent(unittest.TestCase):
+    def setUp(self):
+        self.memory = MemoryAgent()
+
+    def test_remember_and_recall(self):
+        self.memory.remember("pref", "remote_work")
+        self.assertEqual(self.memory.recall("pref"), "remote_work")
+
+
+class TestCertificationAgent(unittest.TestCase):
+    def setUp(self):
+        self.agent = CertificationAgent()
+
+    def test_recommendations(self):
+        recs = self.agent.recommend_certifications(["Python", "AWS"])
+        self.assertIsInstance(recs, list)
+
+
+class TestJobSearchAgent(unittest.TestCase):
+    def setUp(self):
+        self.agent = JobSearchAgent()
+
+    def test_search_jobs(self):
+        jobs = self.agent.search_jobs("Software Engineer")
+        self.assertIsInstance(jobs, list)
+
+
+class TestSkillBuildingAgent(unittest.TestCase):
+    def setUp(self):
+        self.agent = SkillBuildingAgent()
+
+    def test_suggest_skills(self):
+        skills = self.agent.suggest_skills("Data Science")
+        self.assertIsInstance(skills, list)
+
+
+class TestGitVersionController(unittest.TestCase):
+    def setUp(self):
+        self.controller = GitVersionController()
+
+    def test_get_version(self):
+        ver = self.controller.get_current_version()
+        self.assertIsNotNone(ver)
+
+
+class TestOrchestratorAgent(unittest.TestCase):
+    def setUp(self):
+        self.profile = UserProfile(name="Test User", target_role="Engineer")
+        self.orchestrator = OrchestratorAgent(self.profile)
+
+    def test_run_workflow(self):
+        res = self.orchestrator.run_full_workflow()
+        self.assertIsNotNone(res)
+
+
+if __name__ == "__main__":
+    unittest.main()
 Unit tests for CAREER_AGENT_SYSTEM (v2.0.0)
 Testing VaultAgent, CertificationAgent, JobSearchAgent, and OrchestratorAgent.
 """
