@@ -1,6 +1,57 @@
 name: Daily Morning & Evening Career Agent Auto-Sync & Version Control
 
+on:name: Daily Morning & Evening Career Agent Auto-Sync & Version Control
+
 on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute-and-version-control:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run unit and integration tests
+        run: |
+          python3 test_career_agent_system.py
+
+      - name: Run autonomous career agent pipeline (fetch jobs, auto-apply, and build email report)
+        env:
+          GMAIL_SMTP_USER: ${{ secrets.GMAIL_SMTP_USER }}
+          GMAIL_SMTP_APP_PASSWORD: ${{ secrets.GMAIL_SMTP_APP_PASSWORD }}
+        run: |
+          python3 career_agent_system.py --mode morning-digest
+
+      - name: Auto-commit and version control updated vault and tracking artifacts
+        run: |
+          git config --global user.name "balu-cod"
+          git config --global user.email "kodimurthybalu@gmail.com"
+          git add -f vault/ || true
+          if git diff --staged --quiet; then
+            echo "No vault changes to commit."
+          else
+            git commit -m "chore(auto-sync): update personal vault and job tracker [skip ci]"
+            git push origin HEAD || true
+          fi
   schedule:
     - cron: '30 1 * * *'
   workflow_dispatch:
