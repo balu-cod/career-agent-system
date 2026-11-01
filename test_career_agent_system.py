@@ -31,7 +31,7 @@ class TestVaultAgent(unittest.TestCase):
 
     def test_save_and_load_artifact_allowed(self):
         data = {"key": "value"}
-        self.vault.save_artifact("test.json", data)
+        self.vault.save_artifact("test.json", data, "application/json", ["test"], "TEST", ["Python"], ["All"])
         loaded = self.vault.load_artifact("test.json")
         self.assertEqual(loaded, data)
 
