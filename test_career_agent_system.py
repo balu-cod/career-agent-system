@@ -17,7 +17,7 @@ from career_agent_system import (
     SkillBuildingAgent,
     GitVersionController,
     OrchestratorAgent,
-    UserProfile,
+    
 )
 
 
