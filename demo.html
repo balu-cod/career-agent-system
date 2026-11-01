@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CAREER_AGENT_SYSTEM v4.3.0 - Live Interactive Demo</title>
+<style>
+body { font-family: sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
+h1, h2 { color: #58a6ff; }
+.card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 15px; margin-bottom: 15px; }
+.btn { background: #238636; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 8px; }
+.btn-sec { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.terminal { background: #000; color: #39ff14; font-family: monospace; padding: 10px; height: 180px; overflow-y: auto; white-space: pre-wrap; }
+.badge { display: inline-block; padding: 3px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; margin: 3px; background: #1f6feb; color: white; }
+.badge-app { background: #238636; }
+.badge-pend { background: #d29922; color: black; }
+</style>
+</head>
+<body>
+<div style="max-width:1000px; margin:0 auto;">
+<h1>CAREER_AGENT_SYSTEM v4.3.0 Interactive Live Demo</h1>
+<p>Showcasing 8 Modular Agents: VaultAgent, MemoryAgent, CertificationAgent, JobSearchAgent, ResumeAndAutoApplyAgent, GmailDeliveryAndFetchAgent, SkillBuildingAgent, OrchestratorAgent.</p>
+
+<div class="card">
+<h2>1. Guided Tour</h2>
+<button onclick="nextTour()" class="btn">Step Guided Tour</button>
+<div id="tour-box" style="margin-top:10px; background:#1f242c; padding:10px; border-left:4px solid #58a6ff;">Click 'Step Guided Tour' to explore the multi-agent system workflow.</div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h2>2. Live CLI Terminal Simulation</h2>
+<button onclick="cli('--mode morning-digest')" class="btn btn-sec">--mode morning-digest</button>
+<button onclick="cli('--mode auto-apply')" class="btn btn-sec">--mode auto-apply</button>
+<div id="cli-out" class="terminal" style="margin-top:10px;">$ career_agent_system --help</div>
+</div>
+
+<div class="card">
+<h2>3. Tailored ATS Resume Studio</h2>
+<select id="role-sel" style="background:#0d1117; color:#c9d1d9; border:1px solid #30363d; padding:6px; margin-bottom:8px;">
+<option value="Gridbricks">Gridbricks - Full Stack Engineer</option>
+<option value="Vortizo AI">Vortizo AI - Python Software Intern</option>
+<option value="Timbre">Timbre - Automation Engineer</option>
+</select>
+<button onclick="resume()" class="btn">Generate ATS Resume</button>
+<div id="res-out" style="background:#0d1117; padding:10px; margin-top:8px; font-family:monospace; font-size:12px;">Select role and click Generate.</div>
+</div>
+</div>
+
+<div class="card">
+<h2>4. Portal Auto-Apply Simulator (9 Roles)</h2>
+<button onclick="applyAll()" class="btn">Auto-Apply All 9 Roles</button>
+<div id="roles-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:10px;"></div>
+</div>
+
+<div class="card">
+<h2>5. Gmail Daily Executive Digest Report Preview</h2>
+<button onclick="gmail()" class="btn btn-sec">Preview Gmail Report</button>
+<div id="gmail-out" style="background:#0d1117; padding:10px; margin-top:10px; font-family:monospace; white-space:pre-wrap; border:1px solid #30363d;">Click to preview report.</div>
+</div>
+</div>
+
+<script>
+const roles = ['Gridbricks','RavelCode','Langslide','Vortizo AI','Exaful','The AI Signal','IntelleQAcademy','Timbre','Nexus Cloud'];
+let state = {};
+
+function render() {
+document.getElementById('roles-grid').innerHTML = roles.map(r => `
+<div style="background:#0d1117; padding:8px; border:1px solid #30363d; border-radius:4px;">
+<strong>${r}</strong><br>
+<span class="badge ${state[r]?'badge-app':'badge-pend'}">${state[r]?'Auto-Applied':'Pending'}</span><br>
+<button class="btn btn-sec" style="font-size:10px; padding:2px 6px; margin-top:4px;" onclick="applyOne('${r}')">Apply</button>
+</div>`).join('');
+}
+render();
+
+function applyOne(r) { state[r] = true; render(); }
+function applyAll() { roles.forEach(r => state[r] = true); render(); }
+
+function cli(m) {
+const o = document.getElementById('cli-out');
+if (m==='--mode morning-digest') o.innerText = `$ python career_agent_system.py --mode morning-digest\n[OrchestratorAgent] Launching Morning Digest...\n[JobSearchAgent] Found 9 matching positions.\n[CertificationAgent] Found top certifications.\n[GmailDeliveryAndFetchAgent] Report sent to balukodimurthy@gmail.com.`;
+else o.innerText = `$ python career_agent_system.py --mode auto-apply\n[OrchestratorAgent] Initiating Batch Auto-Apply...\n[VaultAgent] Decrypted profile for Kodimurthy Bhalavardan.\n[ResumeAndAutoApplyAgent] Applied to 9 roles.\n[MemoryAgent] History logged.`;
+}
+
+function resume() {
+const r = document.getElementById('role-sel').value;
+document.getElementById('res-out').innerText = `[ATS Resume Packet - ${r}]\nCandidate: Kodimurthy Bhalavardan\nScore: 96/100 | Keywords: Python, Docker, FastAPI, Autonomous AI Agents`;
+}
+
+function gmail() {
+document.getElementById('gmail-out').innerText = `Subject: [CAREER_AGENT_SYSTEM] Executive Digest\nAgents Active: VaultAgent, MemoryAgent, CertificationAgent, JobSearchAgent, ResumeAndAutoApplyAgent, GmailDeliveryAndFetchAgent, SkillBuildingAgent, OrchestratorAgent\nStatus: 9 Roles Processed & Auto-Applied.`;
+}
+
+const steps = [
+"Tour 1/4: Modular architecture driven by OrchestratorAgent.",
+"Tour 2/4: CLI simulation supports --mode morning-digest & --mode auto-apply.",
+"Tour 3/4: Tailored ATS Resume Studio generates targeted application packets.",
+"Tour 4/4: Portal Auto-Apply Simulator automates application filing for 9 roles."
+];
+let step = 0;
+function nextTour() { step = (step + 1) % steps.length; document.getElementById('tour-box').innerText = steps[step]; }
+</script>
+</body>
+</html>
