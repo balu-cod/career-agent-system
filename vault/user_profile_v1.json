@@ -1,0 +1,28 @@
+{
+  "user_id": "107549208886669614365",
+  "full_name": "Kodimurthy Bhalavardan (Balu Kodimurthy)",
+  "contact_email": "kodimurthybalu@gmail.com",
+  "contact_phone": "+91 8688031654",
+  "current_position": "B.Tech CSE Student at MITS & Former Software Developer Intern at ABGL",
+  "years_of_experience": "0.5 years",
+  "technical_skills": [
+    "Python",
+    "SQL",
+    "PostgreSQL",
+    "Supabase",
+    "JavaScript",
+    "PHP",
+    "C++",
+    "Java",
+    "AI Agents"
+  ],
+  "skill_gaps": [
+    "FastAPI",
+    "React",
+    "TypeScript",
+    "MCP SDK",
+    "LangGraph",
+    "DSA"
+  ],
+  "availability": "4 hours/day (20-28 hours/week)"
+}

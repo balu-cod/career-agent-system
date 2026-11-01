@@ -1,0 +1,85 @@
+{
+  "jobs": [
+    {
+      "title": "Full Stack Software Engineer Intern",
+      "company": "Gridbricks",
+      "work_mode": "Remote",
+      "salary": "INR 30k-50k/mo",
+      "application_url": "http_job_1",
+      "match_score": 92,
+      "verified": true
+    },
+    {
+      "title": "Software Development Internship",
+      "company": "RavelCode",
+      "work_mode": "Remote",
+      "salary": "Verified Stipend",
+      "application_url": "http_job_2",
+      "match_score": 91,
+      "verified": true
+    },
+    {
+      "title": "Full-Stack AI Engineer Intern",
+      "company": "Langslide",
+      "work_mode": "Remote",
+      "salary": "INR 8.3k-12.5k/mo",
+      "application_url": "http_job_3",
+      "match_score": 90,
+      "verified": true
+    },
+    {
+      "title": "Python Developer Internship",
+      "company": "Vortizo AI",
+      "work_mode": "Remote",
+      "salary": "Verified Stipend",
+      "application_url": "http_job_4",
+      "match_score": 90,
+      "verified": true
+    },
+    {
+      "title": "Software Engineer Intern - AI & Full Stack",
+      "company": "Exaful",
+      "work_mode": "Remote",
+      "salary": "INR 5k-8k/mo",
+      "application_url": "http_job_5",
+      "match_score": 89,
+      "verified": true
+    },
+    {
+      "title": "Full Stack Developer Internship",
+      "company": "The AI Signal",
+      "work_mode": "Remote",
+      "salary": "Part-Time + PPO",
+      "application_url": "http_job_6",
+      "match_score": 88,
+      "verified": true
+    },
+    {
+      "title": "Python Development Internship",
+      "company": "IntelleQAcademy",
+      "work_mode": "Remote",
+      "salary": "Verified Stipend",
+      "application_url": "http_job_7",
+      "match_score": 84,
+      "verified": true
+    },
+    {
+      "title": "Full Stack Developer Intern",
+      "company": "Timbre",
+      "work_mode": "Hybrid",
+      "salary": "Competitive",
+      "application_url": "http_job_8",
+      "match_score": 80,
+      "verified": true
+    },
+    {
+      "title": "AI Engineer Intern",
+      "company": "CRUV",
+      "work_mode": "Hybrid",
+      "salary": "Competitive",
+      "application_url": "http_job_9",
+      "match_score": 77,
+      "verified": true
+    }
+  ]
+}

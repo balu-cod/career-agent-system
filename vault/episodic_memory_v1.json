@@ -1,0 +1,11 @@
+[
+  {
+    "memory_type": "job",
+    "content": "Executed morning-digest",
+    "source": "ORCHESTRATOR_AGENT",
+    "confidence": 1.0,
+    "created_at": "2026-11-01T02:41:47.498536+00:00",
+    "expires_at": null,
+    "user_confirmed": true
+  }
+]

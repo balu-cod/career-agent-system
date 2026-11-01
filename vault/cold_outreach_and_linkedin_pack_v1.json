@@ -1,0 +1,52 @@
+{
+  "outreach": [
+    {
+      "company": "Gridbricks",
+      "role": "Full Stack Software Engineer Intern",
+      "application_url": "http_job_1",
+      "linkedin_connection_note_300char": "Hi! I am Balu, B.Tech CSE student & former ABGL Software Intern. Applied for Full Stack Software Engineer Intern at Gridbricks!",
+      "cold_email_subject": "Application: Full Stack Software Engineer Intern",
+      "cold_email_body": "Hi Team"
+    },
+    {
+      "company": "RavelCode",
+      "role": "Software Development Internship",
+      "application_url": "http_job_2",
+      "linkedin_connection_note_300char": "Hi! I am Balu, B.Tech CSE student & former ABGL Software Intern. Applied for Software Development Internship at RavelCode!",
+      "cold_email_subject": "Application: Software Development Internship",
+      "cold_email_body": "Hi Team"
+    },
+    {
+      "company": "Langslide",
+      "role": "Full-Stack AI Engineer Intern",
+      "application_url": "http_job_3",
+      "linkedin_connection_note_300char": "Hi! I am Balu, B.Tech CSE student & former ABGL Software Intern. Applied for Full-Stack AI Engineer Intern at Langslide!",
+      "cold_email_subject": "Application: Full-Stack AI Engineer Intern",
+      "cold_email_body": "Hi Team"
+    },
+    {
+      "company": "Vortizo AI",
+      "role": "Python Developer Internship",
+      "application_url": "http_job_4",
+      "linkedin_connection_note_300char": "Hi! I am Balu, B.Tech CSE student & former ABGL Software Intern. Applied for Python Developer Internship at Vortizo AI!",
+      "cold_email_subject": "Application: Python Developer Internship",
+      "cold_email_body": "Hi Team"
+    },
+    {
+      "company": "Exaful",
+      "role": "Software Engineer Intern - AI & Full Stack",
+      "application_url": "http_job_5",
+      "linkedin_connection_note_300char": "Hi! I am Balu, B.Tech CSE student & former ABGL Software Intern. Applied for Software Engineer Intern - AI & Full Stack at Exaful!",
+      "cold_email_subject": "Application: Software Engineer Intern - AI & Full Stack",
+      "cold_email_body": "Hi Team"
+    },
+    {
+      "company": "The AI Signal",
+      "role": "Full Stack Developer Internship",
+      "application_url": "http_job_6",
+      "linkedin_connection_note_300char": "Hi! I am Balu, B.Tech CSE student & former ABGL Software Intern. Applied for Full Stack Developer Internship at The AI Signal!",
+      "cold_email_subject": "Application: Full Stack Developer Internship",
+      "cold_email_body": "Hi Team"
+    }
+  ]
+}

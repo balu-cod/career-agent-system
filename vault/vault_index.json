@@ -1,0 +1,159 @@
+{
+  "vault_version": "3.0.0",
+  "items": [
+    {
+      "file_name": "user_profile_v1.json",
+      "version": 1,
+      "file_type": "application/json",
+      "tags": [
+        "profile"
+      ],
+      "source": "VAULT_BOOTSTRAP",
+      "expiry_date": null,
+      "related_skills": [
+        "Python"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "aa832530fa38cc3279b6c9d328cd1c9f9911cef5c83288c22cb9d1a3abefa387"
+    },
+    {
+      "file_name": "job_matches_v1.json",
+      "version": 1,
+      "file_type": "application/json",
+      "tags": [
+        "jobs"
+      ],
+      "source": "JOB_SEARCH_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "Python"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "ff08934ab871157a9c8fc3b85ea5a24c587931483453798ba6235de8ded40a13"
+    },
+    {
+      "file_name": "certifications_research_v1.json",
+      "version": 2,
+      "file_type": "application/json",
+      "tags": [
+        "certifications"
+      ],
+      "source": "CERTIFICATION_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "Python"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "d44d904cb5c3b7b654fa9a77339c53547d26c2164e4c9cf6e02dc82c315761ae"
+    },
+    {
+      "file_name": "cold_outreach_and_linkedin_pack_v1.json",
+      "version": 1,
+      "file_type": "application/json",
+      "tags": [
+        "outreach"
+      ],
+      "source": "JOB_SEARCH_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "Python"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "00fa11c4a4c46ac38af1e268e65c41659a0d4f2b5ce1aef35dcb385c3f68f2e2"
+    },
+    {
+      "file_name": "applied_jobs_tracker_v1.json",
+      "version": 1,
+      "file_type": "application/json",
+      "tags": [
+        "tracker"
+      ],
+      "source": "JOB_SEARCH_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "Python"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "1e9467ff93ede0475d27dbb49b60e897327e8aff9504fe07270cbbda4276dc86"
+    },
+    {
+      "file_name": "skill_roadmap_v1.json",
+      "version": 2,
+      "file_type": "application/json",
+      "tags": [
+        "roadmap"
+      ],
+      "source": "SKILL_BUILDING_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "FastAPI"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "62899041c99bb1c91c1afa7e89fd7e4d6e6320d07043029faf55f3f3bb4091d5"
+    },
+    {
+      "file_name": "schedule_plan_v1.ics",
+      "version": 1,
+      "file_type": "text/calendar",
+      "tags": [
+        "calendar"
+      ],
+      "source": "SKILL_BUILDING_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "All"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "43890bf089cbf96189d41e1ab64c9261242c9caed34d2aed22d27d93fd88bc6d"
+    },
+    {
+      "file_name": "episodic_memory_v1.json",
+      "version": 1,
+      "file_type": "application/json",
+      "tags": [
+        "memory",
+        "job"
+      ],
+      "source": "MEMORY_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "All"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "6075fda5fbbb896fd3f77ead8cb4f18058d882d07dfd8d394182b60de2364282"
+    },
+    {
+      "file_name": "workflow_audit_log.json",
+      "version": 1,
+      "file_type": "application/json",
+      "tags": [
+        "audit"
+      ],
+      "source": "ORCHESTRATOR_AGENT",
+      "expiry_date": null,
+      "related_skills": [
+        "All"
+      ],
+      "related_jobs": [
+        "All"
+      ],
+      "sha256": "26c1ce6fe34c9deb0b442175e3624632e678b3c908f47b71d6293eb203dedb92"
+    }
+  ]
+}

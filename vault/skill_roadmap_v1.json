@@ -1,0 +1,20 @@
+{
+  "learning_roadmap": [
+    {
+      "phase": "Phase 1",
+      "topic": "FastAPI & Supabase RLS"
+    },
+    {
+      "phase": "Phase 2",
+      "topic": "React, TypeScript & Next.js"
+    },
+    {
+      "phase": "Phase 3",
+      "topic": "Agentic AI (MCP SDK & LangGraph)"
+    },
+    {
+      "phase": "Phase 4",
+      "topic": "NeetCode 150 Python DSA & Kaggle ML"
+    }
+  ]
+}

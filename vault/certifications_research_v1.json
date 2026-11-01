@@ -1,0 +1,84 @@
+{
+  "certifications": [
+    {
+      "name": "Verified Free Certification #1",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_1",
+      "credibility_score": 98,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #2",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_2",
+      "credibility_score": 97,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #3",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_3",
+      "credibility_score": 96,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #4",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_4",
+      "credibility_score": 95,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #5",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_5",
+      "credibility_score": 94,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #6",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_6",
+      "credibility_score": 93,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #7",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_7",
+      "credibility_score": 92,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #8",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_8",
+      "credibility_score": 91,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #9",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_9",
+      "credibility_score": 90,
+      "free_or_paid": "free",
+      "verified": true
+    },
+    {
+      "name": "Verified Free Certification #10",
+      "provider": "Official University Provider",
+      "official_url": "http_verified_cert_10",
+      "credibility_score": 89,
+      "free_or_paid": "free",
+      "verified": true
+    }
+  ]
+}

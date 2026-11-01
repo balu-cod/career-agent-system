@@ -1,0 +1,95 @@
+{
+  "total_tracked_jobs": 9,
+  "applications": [
+    {
+      "title": "Full Stack Software Engineer Intern",
+      "company": "Gridbricks",
+      "work_mode": "Remote",
+      "salary": "INR 30k-50k/mo",
+      "match_score": 92,
+      "application_url": "http_job_1",
+      "gmail_cold_draft_url": "draft_1",
+      "status": "Cold Email Draft Ready"
+    },
+    {
+      "title": "Software Development Internship",
+      "company": "RavelCode",
+      "work_mode": "Remote",
+      "salary": "Verified Stipend",
+      "match_score": 91,
+      "application_url": "http_job_2",
+      "gmail_cold_draft_url": "draft_3",
+      "status": "Cold Email Draft Ready"
+    },
+    {
+      "title": "Full-Stack AI Engineer Intern",
+      "company": "Langslide",
+      "work_mode": "Remote",
+      "salary": "INR 8.3k-12.5k/mo",
+      "match_score": 90,
+      "application_url": "http_job_3",
+      "gmail_cold_draft_url": "draft_2",
+      "status": "Cold Email Draft Ready"
+    },
+    {
+      "title": "Python Developer Internship",
+      "company": "Vortizo AI",
+      "work_mode": "Remote",
+      "salary": "Verified Stipend",
+      "match_score": 90,
+      "application_url": "http_job_4",
+      "gmail_cold_draft_url": "draft_3",
+      "status": "Cold Email Draft Ready"
+    },
+    {
+      "title": "Software Engineer Intern - AI & Full Stack",
+      "company": "Exaful",
+      "work_mode": "Remote",
+      "salary": "INR 5k-8k/mo",
+      "match_score": 89,
+      "application_url": "http_job_5",
+      "gmail_cold_draft_url": "draft_4",
+      "status": "Cold Email Draft Ready"
+    },
+    {
+      "title": "Full Stack Developer Internship",
+      "company": "The AI Signal",
+      "work_mode": "Remote",
+      "salary": "Part-Time + PPO",
+      "match_score": 88,
+      "application_url": "http_job_6",
+      "gmail_cold_draft_url": "draft_5",
+      "status": "Cold Email Draft Ready"
+    },
+    {
+      "title": "Python Development Internship",
+      "company": "IntelleQAcademy",
+      "work_mode": "Remote",
+      "salary": "Verified Stipend",
+      "match_score": 84,
+      "application_url": "http_job_7",
+      "gmail_cold_draft_url": "",
+      "status": "Queued"
+    },
+    {
+      "title": "Full Stack Developer Intern",
+      "company": "Timbre",
+      "work_mode": "Hybrid",
+      "salary": "Competitive",
+      "match_score": 80,
+      "application_url": "http_job_8",
+      "gmail_cold_draft_url": "",
+      "status": "Queued"
+    },
+    {
+      "title": "AI Engineer Intern",
+      "company": "CRUV",
+      "work_mode": "Hybrid",
+      "salary": "Competitive",
+      "match_score": 77,
+      "application_url": "http_job_9",
+      "gmail_cold_draft_url": "",
+      "status": "Queued"
+    }
+  ]
+}
