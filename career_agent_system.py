@@ -309,25 +309,24 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
         if j["score"] >= floor:
             matches.append(j)
 
-    matches.sort(key=lambda x: (-x["score"], -x["ats"]))
-    log(f"  matcher: {len(matches)}/{len(jobs)} postings matched >= {floor}")
-    for m in matches[:10]:
-        log(f"    TOP MATCH [{m['score']} | ATS {m['ats']}%] {m['title']} @ {m['company']} ({m['location']}) -> {m['url']}" + (f" [To: {m['hiring_email']}]" if m.get("hiring_email") else ""))
-
-       certs = [
-        {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
-            {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course & certificate"},
-            {"name": "Full Stack Open — Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free university certificate"}
+                matches.sort(key=lambda x: (-x["score"], -x["ats"]))
+                log(f"  matcher: {len(matches)}/{len(jobs)} postings matched >= {floor}")
+                for m in matches[:10]:
+                        log(f"    TOP MATCH [{m['score']}] | ATS {m['ats']}% | {m['title']} @ {m['company']} ({m['location']})")
+                certs = [
+            {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
+            {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course"},
+            {"name": "Full Stack Open - Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free course"}
         ]
-            insights = {
+        insights = {
             "source_health": health,
-            "skill_gaps": []
+            "skill_gaps": [],
             "certs": certs,
-            "today": {}
+            "today": {},
             "weekend_projects": [{"skill": "mcp", "project": "MCP server exposing Vault artifacts as tools"}],
             "funnel": {"applied": 5, "replied": 1, "interview": 1, "rejected": 0, "reply_rate": 20}
         }
-        res_payload = {
+    res_payload = {
             "updated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
             "version": VERSION,
             "scanned": len(jobs),
