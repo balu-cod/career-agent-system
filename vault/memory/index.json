@@ -1,6 +1,17 @@
 {
   "runs": [
     {
+      "file": "run_20261103T112413Z.json",
+      "summary": "run_20261103T112413Z.md",
+      "run_id": "20261103T112413Z",
+      "finished": "2026-11-03T11:24:37+00:00",
+      "scanned": 1838,
+      "matched": 482,
+      "new_jobs": 482,
+      "top_learning": "Build APIs with FastAPI and Python",
+      "errors": 0
+    },
+    {
       "file": "run_20261103T103257Z.json",
       "summary": "run_20261103T103257Z.md",
       "run_id": "20261103T103257Z",

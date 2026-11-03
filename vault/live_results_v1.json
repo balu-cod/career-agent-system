@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-03T10:33:17+00:00",
+  "updated": "2026-11-03T11:24:37+00:00",
   "version": "6.5.0",
   "scanned": 1838,
-  "matched_count": 486,
+  "matched_count": 482,
   "jobs": [
     {
       "id": "hn:50340134",
@@ -497,12 +497,12 @@
       "status": "new"
     },
     {
-      "id": "gh:cloudflare:8223480",
+      "id": "gh:cloudflare:8325821",
       "portal": "greenhouse",
       "company": "cloudflare",
       "title": "Hardware Systems Engineer",
-      "location": "In-Office",
-      "url": "https://boards.greenhouse.io/cloudflare/jobs/8223480?gh_jid=8223480",
+      "location": "Hybrid",
+      "url": "https://boards.greenhouse.io/cloudflare/jobs/8325821?gh_jid=8325821",
       "score": 90,
       "ats": 100,
       "skills": [
@@ -516,12 +516,12 @@
       "status": "new"
     },
     {
-      "id": "gh:cloudflare:8325821",
+      "id": "gh:cloudflare:8223480",
       "portal": "greenhouse",
       "company": "cloudflare",
       "title": "Hardware Systems Engineer",
-      "location": "Hybrid",
-      "url": "https://boards.greenhouse.io/cloudflare/jobs/8325821?gh_jid=8325821",
+      "location": "In-Office",
+      "url": "https://boards.greenhouse.io/cloudflare/jobs/8223480?gh_jid=8223480",
       "score": 90,
       "ats": 100,
       "skills": [
@@ -815,31 +815,31 @@
         "source": "greenhouse:cloudflare",
         "count": 467,
         "error": null,
-        "ms": 943
+        "ms": 684
       },
       {
         "source": "greenhouse:databricks",
         "count": 911,
         "error": null,
-        "ms": 634
+        "ms": 1090
       },
       {
         "source": "remotive",
         "count": 10,
         "error": null,
-        "ms": 85
+        "ms": 97
       },
       {
         "source": "arbeitnow",
         "count": 300,
         "error": null,
-        "ms": 211
+        "ms": 213
       },
       {
         "source": "hn_hiring",
         "count": 150,
         "error": null,
-        "ms": 1197
+        "ms": 1343
       }
     ],
     "skill_gaps": [
