@@ -6,7 +6,7 @@ def send_digest_email(matches, scanned_count, health, recipient="kodimurthybalu@
     to_addr = recipient or kwargs.get("to_email") or kwargs.get("to") or "kodimurthybalu@gmail.com"
     user = os.environ.get("GMAIL_SMTP_USER")
     passwd = os.environ.get("GMAIL_SMTP_APP_PASSWORD")
-    if not user or not passwd: print("[email] Missing GMAIL_SMTP_USER or GMAIL_SMTP_APP_PASSWORD"); return False
+                if not user or not passwd: print("[email] Missing GMAIL_SMTP_USER or GMAIL_SMTP_APP_PASSWORD"); return False
       if not subject: subject = "Daily Applied Jobs & Career Agent Report - " + str(dt.date.today())
     msg = MIMEMultipart(); msg["From"] = user; msg["To"] = to_addr; msg["Subject"] = subject
     body = f"Report: {dt.date.today()}\nScanned: {scanned_count}\nMatches: {len(matches)}\nHealth: {json.dumps(health)}\n"; msg.attach(MIMEText(body, "plain"))
