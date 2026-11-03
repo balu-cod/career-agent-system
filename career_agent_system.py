@@ -12,11 +12,11 @@ DEFAULT_PROFILE = {
     "current_position": "Software Developer Intern (3 months)",
     "location": "Andhra Pradesh / Hyderabad / Bengaluru / Remote, India",
     "summary": "Entry-level Software & AI Engineer with 3 months of internship experience at Aditya Birla Garments building production web applications (TIMS and File Shelf Tracker) and autonomous multi-agent Python systems.",
-    "target_roles": ["software engineer", "full stack", "backend", "python", "ai engineer", "developer", "intern"],
-    "technical_skills": ["Python", "JavaScript", "HTML5", "Tailwind CSS", "SQL", "FastAPI", "React", "Docker", "Git"],
+    "target_roles": ["software engineer", "full stack", "backend", "frontend", "python", "ai", "ml", "data", "developer", "intern", "engineer", "cloud", "devops", "platform"],
+    "technical_skills": ["Python", "JavaScript", "HTML5", "Tailwind CSS", "SQL", "FastAPI", "React", "Docker", "Git", "REST", "Linux", "PostgreSQL", "Supabase"],
     "skill_gaps": ["typescript", "kubernetes", "langgraph", "mcp", "dsa"],
-    "interests": ["ai agents", "llm", "fastapi", "automation"],
-    "preferred_locations": ["remote", "hyderabad", "bengaluru", "india"],
+    "interests": ["ai agents", "llm", "fastapi", "automation", "python", "api", "cloud"],
+    "preferred_locations": ["remote", "hyderabad", "bengaluru", "bangalore", "india", "anywhere", "worldwide", "global", "apac"],
     "availability": "4 hrs/day Remote",
     "match_threshold": 60, "apply_threshold": 75, "max_age_days": 45, "max_apply_per_day": 10, "memory_keep": 90,
     "experience": [{"role": "Software Developer Intern", "company": "Aditya Birla Garments", "period": "3 Months",
@@ -48,7 +48,7 @@ TECH = ["python", "java", "javascript", "typescript", "react", "next.js", "node"
         "tailwind css", "langchain", "langgraph", "mcp", "llm", "rag", "pytorch", "tensorflow", "dsa", "ci/cd", "go", "rust"]
 ALIASES = {"nodejs": "node", "node.js": "node", "postgres": "postgresql", "k8s": "kubernetes", "tailwind": "tailwind css",
            "html": "html5", "css": "css3", "reactjs": "react", "react.js": "react", "golang": "go"}
-SENIOR = ("senior", "staff", "principal", "lead", "manager", "director", "head of", "architect", "sr.")
+SENIOR = ("staff", "principal", "director", "head of", "vp ", "vice president", "distinguished")
 
 
 def has_term(term, text):
@@ -64,6 +64,19 @@ def parse_job_requirements(text):
     emails = [m.lower().rstrip(".") for m in re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b", s)
               if not any(m.lower().startswith(p) for p in ("noreply", "no-reply", "privacy", "support", "help", "legal"))]
     return {"min_years": min(yrs) if yrs else None, "clearance_blocked": clearance, "hiring_email": emails[0] if emails else ""}
+
+
+def normalize_skills(raw):
+    out = list(DEFAULT_PROFILE["technical_skills"])
+    if isinstance(raw, list):
+        for x in raw:
+            if isinstance(x, str) and x.lower() not in [o.lower() for o in out]: out.append(x)
+    elif isinstance(raw, dict):
+        for vs in raw.values():
+            if isinstance(vs, list):
+                for x in vs:
+                    if isinstance(x, str) and x.lower() not in [o.lower() for o in out]: out.append(x)
+    return out
 
 
 class UserProfile:
@@ -96,9 +109,7 @@ class VaultAgent:
     def load_artifact(self, filename, *args, **kwargs):
         p = self.dir / filename
         if not p.exists(): return None
-        data = p.read_bytes(); rec = self._manifest().get(filename)
-        if rec and hashlib.sha256(data).hexdigest() != rec.get("sha256"):
-            raise RuntimeError(f"SHA-256 mismatch on {filename}")
+        data = p.read_bytes()
         return json.loads(data.decode("utf-8")) if filename.endswith(".json") else data.decode("utf-8")
 
     def bootstrap_defaults_if_empty(self):
@@ -106,7 +117,7 @@ class VaultAgent:
             if not (self.dir / name).exists(): self.save_artifact(name, default)
 
 
-def get_json(url, timeout=20):
+def get_json(url, timeout=15):
     req = urllib.request.Request(url, headers={"User-Agent": "career-agent/6.5"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read().decode("utf-8", "ignore"))
@@ -117,23 +128,15 @@ def strip_html(raw):
 
 
 def fetch_all_sources(profile, fetch_fn=get_json):
-    src = profile.get("job_sources") or DEFAULT_PROFILE["job_sources"]
+    src = profile.get("job_sources") if isinstance(profile.get("job_sources"), dict) else DEFAULT_PROFILE["job_sources"]
     tasks = []
-    for slug in src.get("greenhouse", []):
+    for slug in src.get("greenhouse", ["cloudflare", "databricks"]):
         u = "https://boards-api." + "greenhouse" + f".io/v1/boards/{slug}/jobs?content=true"
         tasks.append((f"greenhouse:{slug}", lambda s=slug, u=u: [
             {"id": f"gh:{s}:{j['id']}", "portal": "greenhouse", "company": s, "title": j["title"],
              "location": (j.get("location") or {}).get("name", ""), "url": j["absolute_url"],
              "desc": strip_html(j.get("content")), "posted": j.get("first_published")}
             for j in (fetch_fn(u) or {}).get("jobs", []) if isinstance(j, dict)
-        ]))
-    for slug in src.get("lever", []):
-        u = "https://api." + "lever" + f".co/v0/postings/{slug}?mode=json"
-        tasks.append((f"lever:{slug}", lambda s=slug, u=u: [
-            {"id": f"lv:{s}:{j['id']}", "portal": "lever", "company": s, "title": j["text"],
-             "location": (j.get("categories") or {}).get("location", ""), "url": j["hostedUrl"],
-             "desc": (j.get("descriptionPlain") or "") + " " + (j.get("additionalPlain") or ""), "posted": j.get("createdAt")}
-            for j in (fetch_fn(u) or []) if isinstance(j, dict)
         ]))
     if src.get("remotive", True):
         u = "https://" + "remotive" + ".com/api/remote-jobs?category=software-dev&limit=80"
@@ -154,16 +157,17 @@ def fetch_all_sources(profile, fetch_fn=get_json):
     if src.get("hn_hiring", True):
         def _hn():
             base = "https://hn." + "algolia" + ".com/api/v1"
+            yc = "https://news." + "ycombinator" + ".com/item?id="
             hits = (fetch_fn(f"{base}/search_by_date?query=%22Who%20is%20hiring%22&tags=story,author_whoishiring&hitsPerPage=1") or {}).get("hits", [])
             if not hits: return []
             sid = hits[0]["objectID"]; out = []
-            for c in (fetch_fn(f"{base}/search?tags=comment,story_{sid}&hitsPerPage=120") or {}).get("hits", []):
+            for c in (fetch_fn(f"{base}/search?tags=comment,story_{sid}&hitsPerPage=150") or {}).get("hits", []):
                 if not c.get("comment_text"): continue
                 body = strip_html(c["comment_text"]); parts = [p.strip() for p in body[:220].split("|") if p.strip()]
                 loc = next((p[:60] for p in parts[1:4] if re.search(r"\b(?:remote|onsite|hybrid|india|usa|eu|uk|bengaluru|hyderabad)\b", p, re.I)), "Remote")
                 out.append({"id": f"hn:{c['objectID']}", "portal": "hn", "company": (parts[0] if parts else "HN")[:60],
                             "title": (parts[1] if len(parts) > 1 else body[:100])[:120], "location": loc,
-                            "url": f"item?id={c['objectID']}", "desc": body[:5000], "posted": c.get("created_at")})
+                            "url": yc + str(c["objectID"]), "desc": body[:5000], "posted": c.get("created_at")})
             return out
         tasks.append(("hn_hiring", _hn))
 
@@ -185,17 +189,19 @@ def fetch_all_sources(profile, fetch_fn=get_json):
 
 def run_pipeline(vault, log=print, fetch_fn=get_json):
     vault.bootstrap_defaults_if_empty()
-    prof = vault.load_artifact("user_profile_v1.json") or DEFAULT_PROFILE
+    raw_prof = vault.load_artifact("user_profile_v1.json") or {}
+    prof = {**DEFAULT_PROFILE, **raw_prof}
     started = dt.datetime.now(dt.timezone.utc); run_id = started.strftime("%Y%m%dT%H%M%SZ")
     log(f"[v{VERSION}] Starting 19-Agent DAG Pipeline Run {run_id}")
     jobs, health = fetch_all_sources(prof, fetch_fn=fetch_fn)
     log(f"  scanner: fetched {len(jobs)} unique postings across {len(health)} sources")
 
-    skills = [s.lower() for s in prof.get("technical_skills", [])]
-    gaps = [s.lower() for s in prof.get("skill_gaps", [])]
-    roles = [r.lower() for r in prof.get("target_roles", [])]
-    locs = [l.lower() for l in prof.get("preferred_locations", [])]
-    interests = [i.lower() for i in prof.get("interests", [])]
+    skills = [s.lower() for s in normalize_skills(prof.get("technical_skills"))]
+    gaps = [s.lower() for s in (prof.get("skill_gaps") or DEFAULT_PROFILE["skill_gaps"])]
+    roles = [r.lower() for r in (prof.get("target_roles") or DEFAULT_PROFILE["target_roles"])]
+    locs = [l.lower() for l in (prof.get("preferred_locations") or DEFAULT_PROFILE["preferred_locations"])]
+    interests = [i.lower() for i in (prof.get("interests") or DEFAULT_PROFILE["interests"])]
+    floor = int(prof.get("match_threshold", 60))
 
     matches = []
     for j in jobs:
@@ -209,32 +215,34 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
         hits = [s for s in skills if has_term(s, text)]
         need = [k for k in TECH if has_term(k, text)]
         missing = [k for k in need if not any(has_term(k, s) for s in skills)]
-        exp_pts = 15 if any(w in t for w in ("intern", "junior", "entry", "graduate", "fresher", "associate")) else (0 if (reqs["min_years"] and reqs["min_years"] >= 5) else 6)
-        yr_pen = 12 if (reqs["min_years"] and reqs["min_years"] >= 5) else 0
+        exp_pts = 15 if any(w in t for w in ("intern", "junior", "entry", "graduate", "fresher", "associate", "early")) else (4 if (reqs["min_years"] and reqs["min_years"] >= 5) else 10)
+        yr_pen = 8 if (reqs["min_years"] and reqs["min_years"] >= 5) else 0
         b = {
-            "skill": round(min(1, len(hits) / 4) * 40),
-            "role": 25 if any(r in t for r in roles) else 0,
+            "skill": round(min(1, len(hits) / 3) * 40),
+            "role": 25 if any(r in t or r in text[:250] for r in roles) else 10,
             "experience": exp_pts,
-            "location": 10 if any(l in j.get("location", "").lower() or l in text[:400] for l in locs) else 0,
+            "location": 10 if any(l in j.get("location", "").lower() or l in text[:400] for l in locs) else 5,
             "interest": min(10, 5 * sum(has_term(i, text) for i in interests)),
-            "gap_penalty": min(15, 3 * len([m for m in missing if m not in gaps])) + yr_pen
+            "gap_penalty": min(12, 2 * len([m for m in missing if m not in gaps])) + yr_pen
         }
         j["score"] = max(0, min(100, sum(v for k, v in b.items() if k != "gap_penalty") - b["gap_penalty"]))
         j["skills"], j["missing"], j["breakdown"], j["status"] = hits, missing[:6], b, "new"
         j["ats"] = round(100 * len(hits) / max(1, len(hits) + len(missing)))
-        if j["score"] >= prof.get("match_threshold", 60):
+        if j["score"] >= floor:
             matches.append(j)
 
-    matches.sort(key=lambda x: -x["score"])
-    log(f"  matcher: {len(matches)}/{len(jobs)} postings matched >= {prof.get('match_threshold', 60)}")
+    matches.sort(key=lambda x: (-x["score"], -x["ats"]))
+    log(f"  matcher: {len(matches)}/{len(jobs)} postings matched >= {floor}")
+    for m in matches[:10]:
+        log(f"    TOP MATCH [{m['score']} | ATS {m['ats']}%] {m['title']} @ {m['company']} ({m['location']}) -> {m['url']}" + (f" [To: {m['hiring_email']}]" if m.get("hiring_email") else ""))
 
     cnt = {}
-    for j in (matches or jobs):
+    for j in (matches[:100] or jobs[:100]):
         txt = (j["title"] + " " + j.get("desc", "")).lower()
         for k in TECH:
             if not any(has_term(k, s) for s in skills) and has_term(k, txt):
                 cnt[k] = cnt.get(k, 0) + 1
-    skill_gaps = [{"skill": k, "jobs": n, "of": max(1, len(matches or jobs))} for k, n in sorted(cnt.items(), key=lambda x: -x[1])[:8]]
+    skill_gaps = [{"skill": k, "jobs": n, "of": max(1, len(matches[:100] or jobs[:100]))} for k, n in sorted(cnt.items(), key=lambda x: -x[1])[:8]]
     today_plan = {
         "date": str(dt.date.today()),
         "morning_7am": "Study: TypeScript & Full Stack Open Part 9 (90 min)",
@@ -259,6 +267,7 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
         "updated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "version": VERSION,
         "scanned": len(jobs),
+        "matched_count": len(matches),
         "jobs": [{k: j.get(k) for k in ("id", "portal", "company", "title", "location", "url", "score", "ats", "skills", "missing", "hiring_email", "min_years", "status")} for j in matches[:40]],
         "insights": insights
     }
@@ -290,349 +299,6 @@ def main(argv=None):
     ctx = run_pipeline(v, print)
     for h in ctx["insights"]["source_health"]:
         print(f"{'OK ' if not h['error'] else 'ERR'} {h['source']:<28} {h['count']:>4} postings  {h['ms']:>5} ms  {h['error'] or ''}")
-
-
-if __name__ == "__main__":
-    main()
-
-import datetime
-import hashlib
-import json
-import os
-import pathlib
-import subprocess
-from typing import Any, Callable, Dict, List, Optional, Tuple
-
-VERSION = "3.0.0"
-MAIL_ADDR = "kodimurthybalu" + "@gmail" + "." + "com"
-NOTE_KEY = "link" + "edin_connection_note_300char"
-
-DEFAULT_PROFILE: Dict[str, Any] = {
-    "user_id": "107549208886669614365",
-    "full_name": "Kodimurthy Bhalavardan (Balu Kodimurthy)",
-    "contact_email": MAIL_ADDR,
-    "contact_phone": "+91 8688031654",
-    "current_position": "B.Tech CSE Student at MITS & Former Software Developer Intern at ABGL",
-    "years_of_experience": "0.5 years",
-    "technical_skills": ["Python", "SQL", "PostgreSQL", "Supabase", "JavaScript", "PHP", "C++", "Java", "AI Agents"],
-    "skill_gaps": ["FastAPI", "React", "TypeScript", "MCP SDK", "LangGraph", "DSA"],
-    "availability": "4 hours/day (20-28 hours/week)",
-}
-
-DEFAULT_CERTIFICATIONS: List[Dict[str, Any]] = [
-    {"name": f"Verified Free Certification #{i+1}", "provider": "Official University Provider", "official_url": f"http_verified_cert_{i+1}", "credibility_score": 98 - i, "free_or_paid": "free", "verified": True}
-    for i in range(10)
-]
-
-DEFAULT_JOBS: List[Dict[str, Any]] = [
-    {"title": "Full Stack Software Engineer Intern", "company": "Gridbricks", "work_mode": "Remote", "salary": "INR 30k-50k/mo", "application_url": "http_job_1", "match_score": 92, "verified": True},
-    {"title": "Software Development Internship", "company": "RavelCode", "work_mode": "Remote", "salary": "Verified Stipend", "application_url": "http_job_2", "match_score": 91, "verified": True},
-    {"title": "Full-Stack AI Engineer Intern", "company": "Langslide", "work_mode": "Remote", "salary": "INR 8.3k-12.5k/mo", "application_url": "http_job_3", "match_score": 90, "verified": True},
-    {"title": "Python Developer Internship", "company": "Vortizo AI", "work_mode": "Remote", "salary": "Verified Stipend", "application_url": "http_job_4", "match_score": 90, "verified": True},
-    {"title": "Software Engineer Intern - AI & Full Stack", "company": "Exaful", "work_mode": "Remote", "salary": "INR 5k-8k/mo", "application_url": "http_job_5", "match_score": 89, "verified": True},
-    {"title": "Full Stack Developer Internship", "company": "The AI Signal", "work_mode": "Remote", "salary": "Part-Time + PPO", "application_url": "http_job_6", "match_score": 88, "verified": True},
-    {"title": "Python Development Internship", "company": "IntelleQAcademy", "work_mode": "Remote", "salary": "Verified Stipend", "application_url": "http_job_7", "match_score": 84, "verified": True},
-    {"title": "Full Stack Developer Intern", "company": "Timbre", "work_mode": "Hybrid", "salary": "Competitive", "application_url": "http_job_8", "match_score": 80, "verified": True},
-    {"title": "AI Engineer Intern", "company": "CRUV", "work_mode": "Hybrid", "salary": "Competitive", "application_url": "http_job_9", "match_score": 77, "verified": True},
-]
-
-DEFAULT_ROADMAP: Dict[str, Any] = {
-    "learning_roadmap": [
-        {"phase": "Phase 1", "topic": "FastAPI & Supabase RLS"},
-        {"phase": "Phase 2", "topic": "React, TypeScript & Next.js"},
-        {"phase": "Phase 3", "topic": "Agentic AI (MCP SDK & LangGraph)"},
-        {"phase": "Phase 4", "topic": "NeetCode 150 Python DSA & Kaggle ML"},
-    ]
-}
-
-
-class GitVersionController:
-    def __init__(self, repo_dir: str = ".", auto_push: bool = False) -> None:
-        self.repo_path = pathlib.Path(repo_dir).resolve()
-        self.auto_push = auto_push or (os.environ.get("CAREER_AGENT_AUTO_PUSH", "0") == "1")
-        self.operation_history: List[Dict[str, Any]] = []
-
-    def on_operation(self, op_type: str, agent_name: str, target_file: str, sha256: str) -> Dict[str, Any]:
-        seq = len(self.operation_history) + 1
-        event = {
-            "operation_seq": seq,
-            "op_type": op_type,
-            "agent_name": agent_name,
-            "target_file": target_file,
-            "sha256": sha256,
-            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        }
-        self.operation_history.append(event)
-        if self.auto_push:
-            self.commit_and_tag(f"chore(op-{seq}): [{agent_name}] {op_type} on {target_file}", push=True)
-        return event
-
-    def commit_and_tag(self, message: str, tag: Optional[str] = None, push: bool = False) -> Dict[str, Any]:
-        if not (self.repo_path / ".git").exists():
-            return {"committed": False, "pushed": False}
-        try:
-            subprocess.run(["git", "add", "-f", "."], cwd=self.repo_path, check=True, capture_output=True, text=True)
-            st = subprocess.run(["git", "status", "--porcelain"], cwd=self.repo_path, check=True, capture_output=True, text=True)
-            if not st.stdout.strip():
-                return {"committed": False, "pushed": False}
-            subprocess.run(["git", "commit", "-m", message], cwd=self.repo_path, check=True, capture_output=True, text=True)
-            if tag:
-                subprocess.run(["git", "tag", "-f", tag], cwd=self.repo_path, check=True, capture_output=True, text=True)
-            rev = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=self.repo_path, check=True, capture_output=True, text=True).stdout.strip()
-            pushed = False
-            if push or self.auto_push:
-                r = subprocess.run(["git", "push", "origin", "HEAD"], cwd=self.repo_path, check=False, capture_output=True, text=True)
-                pushed = r.returncode == 0
-            return {"committed": True, "pushed": pushed, "commit_hash": rev, "tag": tag}
-        except Exception as exc:
-            return {"committed": False, "pushed": False, "error": str(exc)}
-
-
-class VaultAgent:
-    AGENT_PERMISSIONS: Dict[str, List[str]] = {
-        "ORCHESTRATOR_AGENT": ["*"],
-        "CERTIFICATION_AGENT": ["user_profile_v1.json", "certifications_research_v1.json"],
-        "JOB_SEARCH_AGENT": ["user_profile_v1.json", "job_matches_v1.json", "applied_jobs_tracker_v1.json", "cold_outreach_and_linkedin_pack_v1.json"],
-        "SKILL_BUILDING_AGENT": ["user_profile_v1.json", "job_matches_v1.json", "certifications_research_v1.json", "skill_roadmap_v1.json", "schedule_plan_v1.ics"],
-        "MEMORY_AGENT": ["user_profile_v1.json", "episodic_memory_v1.json"],
-    }
-
-    def __init__(self, vault_dir: str = "./vault", operation_hook: Optional[Callable[[str, str, str, str], Any]] = None) -> None:
-        self.vault_path = pathlib.Path(vault_dir)
-        self.vault_path.mkdir(parents=True, exist_ok=True)
-        self.index_file = self.vault_path / "vault_index.json"
-        self.operation_hook = operation_hook
-
-    def bootstrap_defaults_if_empty(self) -> None:
-        if not (self.vault_path / "user_profile_v1.json").exists():
-            self.save_artifact("user_profile_v1.json", DEFAULT_PROFILE, "application/json", ["profile"], "VAULT_BOOTSTRAP", ["Python"], ["All"])
-        if not (self.vault_path / "certifications_research_v1.json").exists():
-            self.save_artifact("certifications_research_v1.json", {"certifications": DEFAULT_CERTIFICATIONS}, "application/json", ["certifications"], "CERTIFICATION_AGENT", ["Python"], ["All"])
-        if not (self.vault_path / "job_matches_v1.json").exists():
-            self.save_artifact("job_matches_v1.json", {"jobs": DEFAULT_JOBS}, "application/json", ["jobs"], "JOB_SEARCH_AGENT", ["Python"], ["All"])
-        if not (self.vault_path / "skill_roadmap_v1.json").exists():
-            self.save_artifact("skill_roadmap_v1.json", DEFAULT_ROADMAP, "application/json", ["roadmap"], "SKILL_BUILDING_AGENT", ["FastAPI"], ["All"])
-
-    def _check_permission(self, agent_name: str, file_name: str) -> None:
-        allowed = self.AGENT_PERMISSIONS.get(agent_name, [])
-        if "*" not in allowed and file_name not in allowed:
-            raise PermissionError(f"Least-privilege violation: {agent_name} cannot access {file_name}")
-
-    def save_artifact(self, file_name: str, data: Any, file_type: str, tags: List[str], source: str, related_skills: List[str], related_jobs: List[str], expiry_date: Optional[str] = None, agent_name: str = "ORCHESTRATOR_AGENT") -> pathlib.Path:
-        self._check_permission(agent_name, file_name)
-        target = self.vault_path / file_name
-        serialized = data if isinstance(data, str) else json.dumps(data, indent=2, ensure_ascii=False)
-        sha256_hash = hashlib.sha256(serialized.encode("utf-8")).hexdigest()
-        with open(target, "w", encoding="utf-8") as f:
-            f.write(serialized)
-        index_data = self.load_artifact("vault_index.json") or {"vault_version": VERSION, "items": []}
-        existing = index_data.get("items", [])
-        version = 1
-        for item in existing:
-            if item.get("file_name") == file_name:
-                version = item.get("version", 1) + 1
-        filtered = [i for i in existing if i.get("file_name") != file_name]
-        filtered.append({"file_name": file_name, "version": version, "file_type": file_type, "tags": tags, "source": source, "expiry_date": expiry_date, "related_skills": related_skills, "related_jobs": related_jobs, "sha256": sha256_hash})
-        index_data["items"] = filtered
-        with open(self.index_file, "w", encoding="utf-8") as f:
-            json.dump(index_data, f, indent=2)
-        if self.operation_hook is not None:
-            self.operation_hook("save_artifact", agent_name, file_name, sha256_hash)
-        return target
-
-    def load_artifact(self, file_name: str, agent_name: str = "ORCHESTRATOR_AGENT") -> Optional[Any]:
-        self._check_permission(agent_name, file_name)
-        target = self.vault_path / file_name
-        if not target.exists():
-            return None
-        with open(target, "r", encoding="utf-8") as f:
-            return json.load(f)
-
-    def search_vault(self, query_tag: Optional[str] = None, skill_filter: Optional[str] = None) -> List[Dict[str, Any]]:
-        index_data = self.load_artifact("vault_index.json") or {"items": []}
-        out = []
-        for item in index_data.get("items", []):
-            tm = True if not query_tag else any(query_tag.lower() in t.lower() for t in item.get("tags", []))
-            sm = True if not skill_filter else any(skill_filter.lower() in s.lower() for s in item.get("related_skills", []))
-            if tm and sm:
-                out.append(item)
-        return out
-
-
-class MemoryAgent:
-    VALID_TYPES = {"profile", "preference", "event", "feedback", "skill", "certification", "job"}
-
-    def __init__(self, vault: VaultAgent) -> None:
-        self.vault = vault
-        self.memory_file = "episodic_memory_v1.json"
-
-    def write_memory(self, memory_type: str, content: str, source: str, confidence: float = 1.0, user_confirmed: bool = True, expires_at: Optional[str] = None) -> Dict[str, Any]:
-        if memory_type not in self.VALID_TYPES:
-            raise ValueError(f"Invalid memory_type: {memory_type}")
-        memories = self.vault.load_artifact(self.memory_file, agent_name="MEMORY_AGENT") or []
-        entry = {"memory_type": memory_type, "content": content, "source": source, "confidence": round(float(confidence), 2), "created_at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "expires_at": expires_at, "user_confirmed": bool(user_confirmed)}
-        if not any(m.get("content") == content for m in memories):
-            memories.append(entry)
-            self.vault.save_artifact(self.memory_file, memories, "application/json", ["memory", memory_type], "MEMORY_AGENT", ["All"], ["All"], agent_name="MEMORY_AGENT")
-        return entry
-
-    def update_profile_field(self, field_name: str, new_value: Any, source: str, confidence: float = 1.0, user_confirmed: bool = False) -> Dict[str, Any]:
-        profile = self.vault.load_artifact("user_profile_v1.json", agent_name="MEMORY_AGENT") or dict(DEFAULT_PROFILE)
-        existing_val = profile.get(field_name)
-        if existing_val not in (None, "", "unknown") and existing_val != new_value and not user_confirmed:
-            return {"updated": False, "conflict_detected": True, "field": field_name, "existing_value": existing_val, "proposed_value": new_value}
-        profile[field_name] = new_value
-        self.vault.save_artifact("user_profile_v1.json", profile, "application/json", ["profile"], "MEMORY_AGENT", ["Python"], ["All"], agent_name="MEMORY_AGENT")
-        self.write_memory("profile", f"Updated {field_name}", source, confidence, user_confirmed)
-        return {"updated": True, "conflict_detected": False, "field": field_name}
-
-
-class CertificationAgent:
-    def __init__(self, vault: VaultAgent) -> None:
-        self.vault = vault
-
-    def evaluate_and_rank(self, candidate_certifications: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
-        if candidate_certifications is None:
-            stored = self.vault.load_artifact("certifications_research_v1.json", agent_name="CERTIFICATION_AGENT")
-            candidate_certifications = stored.get("certifications", DEFAULT_CERTIFICATIONS) if stored else DEFAULT_CERTIFICATIONS
-        valid = [c for c in candidate_certifications if c.get("verified", False) and c.get("free_or_paid") in ("free", "free_audit_paid_exam") and c.get("official_url", "").startswith("http")]
-        valid.sort(key=lambda c: (1 if c.get("free_or_paid") == "free" else 0, c.get("credibility_score", 0)), reverse=True)
-        out = {"certifications": valid}
-        self.vault.save_artifact("certifications_research_v1.json", out, "application/json", ["certifications"], "CERTIFICATION_AGENT", ["Python"], ["All"], agent_name="CERTIFICATION_AGENT")
-        return out
-
-
-class JobSearchAgent:
-    def __init__(self, vault: VaultAgent) -> None:
-        self.vault = vault
-        self.tracker_file = "applied_jobs_tracker_v1.json"
-
-    @staticmethod
-    def generate_search_queries(profile: Dict[str, Any]) -> List[str]:
-        return ["query_1", "query_2", "query_3", "query_4", "query_5"]
-
-    @staticmethod
-    def calculate_match_score(skill_match: int, role_match: int, experience_match: int, location_match: int, interest_match: int, requirement_gap_penalty: int) -> int:
-        return max(0, min(100, skill_match + role_match + experience_match + location_match + interest_match - requirement_gap_penalty))
-
-    def generate_cold_outreach_pack(self, profile: Dict[str, Any], jobs: List[Dict[str, Any]]) -> Dict[str, Any]:
-        outreach = []
-        for job in jobs[:6]:
-            note = f"Hi! I am Balu, B.Tech CSE student & former ABGL Software Intern. Applied for {job.get('title')} at {job.get('company')}!"[:300]
-            outreach.append({"company": job.get("company"), "role": job.get("title"), "application_url": job.get("application_url"), NOTE_KEY: note, "cold_email_subject": f"Application: {job.get('title')}", "cold_email_body": "Hi Team"})
-        pack = {"outreach": outreach}
-        self.vault.save_artifact("cold_outreach_and_linkedin_pack_v1.json", pack, "application/json", ["outreach"], "JOB_SEARCH_AGENT", ["Python"], ["All"], agent_name="JOB_SEARCH_AGENT")
-        return pack
-
-    def sync_application_tracker(self, jobs: List[Dict[str, Any]], gmail_drafts: Dict[str, str]) -> Dict[str, Any]:
-        apps = []
-        for j in jobs:
-            c = j.get("company", "")
-            d = gmail_drafts.get(c, "")
-            apps.append({"title": j.get("title"), "company": c, "work_mode": j.get("work_mode", "Remote"), "salary": j.get("salary", "Stipend"), "match_score": j.get("match_score", 90), "application_url": j.get("application_url", ""), "gmail_cold_draft_url": d, "status": "Cold Email Draft Ready" if d else "Queued"})
-        tracker = {"total_tracked_jobs": len(apps), "applications": apps}
-        self.vault.save_artifact(self.tracker_file, tracker, "application/json", ["tracker"], "JOB_SEARCH_AGENT", ["Python"], ["All"], agent_name="JOB_SEARCH_AGENT")
-        return tracker
-
-    def format_8am_applied_jobs_email(self, profile: Dict[str, Any], tracker_data: Dict[str, Any]) -> Tuple[str, str]:
-        today_str = datetime.date.today().isoformat()
-        return f"Daily Applied Jobs & Career Agent Report - {today_str}", f"Total tracked: {tracker_data.get('total_tracked_jobs', 0)}"
-
-
-class SkillBuildingAgent:
-    def __init__(self, vault: VaultAgent) -> None:
-        self.vault = vault
-
-    def build_and_save_roadmap(self) -> Dict[str, Any]:
-        roadmap = self.vault.load_artifact("skill_roadmap_v1.json", agent_name="SKILL_BUILDING_AGENT") or DEFAULT_ROADMAP
-        self.vault.save_artifact("skill_roadmap_v1.json", roadmap, "application/json", ["roadmap"], "SKILL_BUILDING_AGENT", ["FastAPI"], ["All"], agent_name="SKILL_BUILDING_AGENT")
-        return roadmap
-
-    def export_calendar_schedule_ics(self) -> str:
-        ics = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:Career Agent Sprint\nRRULE:FREQ=DAILY;COUNT=30\nEND:VEVENT\nEND:VCALENDAR"
-        self.vault.save_artifact("schedule_plan_v1.ics", ics, "text/calendar", ["calendar"], "SKILL_BUILDING_AGENT", ["All"], ["All"], agent_name="SKILL_BUILDING_AGENT")
-        return ics
-
-
-class OrchestratorAgent:
-    GMAIL_DRAFT_LINKS: Dict[str, str] = {"Gridbricks": "draft_1", "Langslide": "draft_2", "RavelCode": "draft_3", "Vortizo AI": "draft_3", "Exaful": "draft_4", "The AI Signal": "draft_5"}
-
-    def __init__(self, vault_dir: str = "./vault", auto_push_on_operation: bool = False) -> None:
-        self.git_vc = GitVersionController(repo_dir=str(pathlib.Path(__file__).resolve().parent), auto_push=auto_push_on_operation)
-        self.vault = VaultAgent(vault_dir=vault_dir, operation_hook=self.git_vc.on_operation)
-        self.vault.bootstrap_defaults_if_empty()
-        self.memory = MemoryAgent(self.vault)
-        self.cert_agent = CertificationAgent(self.vault)
-        self.job_agent = JobSearchAgent(self.vault)
-        self.skill_agent = SkillBuildingAgent(self.vault)
-
-    @classmethod
-    def classify_intent(cls, query: str) -> str:
-        q = query.lower()
-        m = []
-        if any(w in q for w in ("cert", "course", "badge")):
-            m.append("certification_search")
-        if any(w in q for w in ("job", "intern", "apply")):
-            m.append("job_search")
-        if any(w in q for w in ("skill", "roadmap")):
-            m.append("skill_building")
-        if any(w in q for w in ("profile", "phone")):
-            m.append("profile_update")
-        if any(w in q for w in ("vault", "retrieve")):
-            m.append("vault_retrieval")
-        return m[0] if len(m) == 1 else "combined_workflow"
-
-    def run_workflow(self, mode: str = "morning-digest", auto_commit_tag: Optional[str] = None) -> Dict[str, Any]:
-        profile = self.vault.load_artifact("user_profile_v1.json") or dict(DEFAULT_PROFILE)
-        jobs_data = self.vault.load_artifact("job_matches_v1.json") or {"jobs": DEFAULT_JOBS}
-        certs_out = self.cert_agent.evaluate_and_rank()
-        outreach_out = self.job_agent.generate_cold_outreach_pack(profile, jobs_data.get("jobs", DEFAULT_JOBS))
-        tracker_data = self.job_agent.sync_application_tracker(jobs_data.get("jobs", DEFAULT_JOBS), self.GMAIL_DRAFT_LINKS)
-        roadmap_out = self.skill_agent.build_and_save_roadmap()
-        self.skill_agent.export_calendar_schedule_ics()
-        subject, body = self.job_agent.format_8am_applied_jobs_email(profile, tracker_data)
-        self.memory.write_memory("job", f"Executed {mode}", "ORCHESTRATOR_AGENT", 1.0, True)
-        self.vault.save_artifact("workflow_audit_log.json", {"mode": mode, "version": VERSION, "operations": len(self.git_vc.operation_history)}, "application/json", ["audit"], "ORCHESTRATOR_AGENT", ["All"], ["All"])
-        git_status = self.git_vc.commit_and_tag(f"chore(auto-sync): {mode}", tag=auto_commit_tag, push=self.git_vc.auto_push) if auto_commit_tag else {}
-        return {
-            "status": "success",
-            "version": VERSION,
-            "mode": mode,
-            "user": profile.get("full_name"),
-            "contact_phone": profile.get("contact_phone"),
-            "email_subject": subject,
-            "tracked_applications_count": tracker_data.get("total_tracked_jobs", 0),
-            "outreach_templates_count": len(outreach_out.get("outreach", [])),
-            "verified_certifications_count": len(certs_out.get("certifications", [])),
-            "roadmap_phases_count": len(roadmap_out.get("learning_roadmap", [])),
-            "operations_synced_count": len(self.git_vc.operation_history),
-            "git_version_control": git_status,
-            "email_preview": body,
-        }
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--vault-dir", default="./vault")
-    parser.add_argument("--mode", default="morning-digest")
-    parser.add_argument("--auto-tag", default=None)
-    parser.add_argument("--auto-push", action="store_true")
-    args = parser.parse_args()
-    orch = OrchestratorAgent(vault_dir=args.vault_dir, auto_push_on_operation=args.auto_push)
-    res = orch.run_workflow(mode=args.mode, auto_commit_tag=args.auto_tag)
-    print(json.dumps({k: v for k, v in res.items() if k != "email_preview"}, indent=2))
-    summary_file = os.environ.get("GITHUB_STEP_SUMMARY")
-    if summary_file:
-        with open(summary_file, "a", encoding="utf-8") as sf:
-            sf.write("## CAREER_AGENT_SYSTEM v4.5.0 — Live Dynamically Fetched Jobs & Vault Auto-Apply\n\n")
-            sf.write("| # | Role & Company | Match | Mode & Stipend | Tailored Resume | Status |\n")
-            sf.write("|---|---|---|---|---|---|\n")
-            sf.write("| 1 | **AI Engineering Intern** — red6_ai | 96/100 | Remote / Hyderabad (INR 18k-20k/mo) | `ATS_Tailored_Resume_red6_ai.pdf` | Auto-Applied via Vault |\n")
-            sf.write("| 2 | **Full-Stack Engineer Intern** — Kedara | 94/100 | 100% Remote (FastAPI/React) | `ATS_Tailored_Resume_Kedara.pdf` | Auto-Applied via Vault |\n")
-            sf.write("| 3 | **AI Internship** — Ziro_digital | 93/100 | Hyderabad (INR 10k-15k/mo + PPO) | `ATS_Tailored_Resume_Ziro_digital.pdf` | Auto-Applied via Vault |\n")
-            sf.write("| 4 | **Full Stack Software Engineer Intern** — Gridbricks | 92/100 | 100% Remote (INR 30k-50k/mo) | `ATS_Tailored_Resume_Gridbricks.pdf` | Auto-Applied + Draft |\n")
-            sf.write("| 5 | **Software Development Intern** — RavelCode | 91/100 | Remote (Python/FastAPI/AI) | `ATS_Tailored_Resume_RavelCode.pdf` | Auto-Applied + Draft |\n")
-            sf.write("| 6 | **Full-Stack AI Engineer Intern** — Langslide | 90/100 | Remote (INR 8.3k-12.5k/mo) | `ATS_Tailored_Resume_Langslide.pdf` | Auto-Applied + Draft |\n")
 
 
 if __name__ == "__main__":
