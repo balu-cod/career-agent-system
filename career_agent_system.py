@@ -314,44 +314,44 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
     for m in matches[:10]:
         log(f"    TOP MATCH [{m['score']} | ATS {m['ats']}%] {m['title']} @ {m['company']} ({m['location']}) -> {m['url']}" + (f" [To: {m['hiring_email']}]" if m.get("hiring_email") else ""))
 
-send_digest_email(matches, len(jobs), health, log=log)
-certs = [
-    {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
-        {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course & certificate"},
-        {"name": "Full Stack Open — Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free university certificate"}
-    ]
-    insights = {
-        "source_health": health,
-        "skill_gaps": []
-        "certs": certs,
-        "today": {}
-        "weekend_projects": [{"skill": "mcp", "project": "MCP server exposing Vault artifacts as tools"}],
-        "funnel": {"applied": 5, "replied": 1, "interview": 1, "rejected": 0, "reply_rate": 20}
-    }
-    res_payload = {
-        "updated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "version": VERSION,
-        "scanned": len(jobs),
-        "matched_count": len(matches),
-        "jobs": [{k: j.get(k) for k in ("id", "portal", "company", "title", "location", "url", "score", "ats", "skills", "missing", "hiring_email", "min_years", "status")} for j in matches[:40]],
-        "insights": insights
-    }
-    vault.save_artifact("live_results_v1.json", res_payload)
+            send_digest_email(matches, len(jobs), health, log=log)
+        certs = [
+        {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
+            {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course & certificate"},
+            {"name": "Full Stack Open — Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free university certificate"}
+        ]
+            insights = {
+            "source_health": health,
+            "skill_gaps": []
+            "certs": certs,
+            "today": {}
+            "weekend_projects": [{"skill": "mcp", "project": "MCP server exposing Vault artifacts as tools"}],
+            "funnel": {"applied": 5, "replied": 1, "interview": 1, "rejected": 0, "reply_rate": 20}
+        }
+        res_payload = {
+            "updated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+            "version": VERSION,
+            "scanned": len(jobs),
+            "matched_count": len(matches),
+            "jobs": [{k: j.get(k) for k in ("id", "portal", "company", "title", "location", "url", "score", "ats", "skills", "missing", "hiring_email", "min_years", "status")} for j in matches[:40]],
+            "insights": insights
+        }
+        vault.save_artifact("live_results_v1.json", res_payload)
 
-    mdir = vault.dir / "memory"; mdir.mkdir(parents=True, exist_ok=True)
-    mem_entry = {"run_id": run_id, "finished": res_payload["updated"], "version": VERSION,
-                 "jobs": {"scanned": len(jobs), "matched": len(matches), "top": res_payload["jobs"][:10]},
-                 "skill_gaps": skill_gaps, "certs": certs, "today": today_plan}
-    (mdir / f"run_{run_id}.json").write_text(json.dumps(mem_entry, indent=2), "utf-8")
-    (mdir / f"run_{run_id}.md").write_text(f"# Run {run_id}\n- Scanned: {len(jobs)} | Matched: {len(matches)}\n", "utf-8")
-    (mdir / "latest.json").write_text(json.dumps(mem_entry, indent=2), "utf-8")
-    idx_file = mdir / "index.json"
-    idx = json.loads(idx_file.read_text("utf-8")).get("runs", []) if idx_file.exists() else []
-    idx = [{"file": f"run_{run_id}.json", "summary": f"run_{run_id}.md", "run_id": run_id, "finished": res_payload["updated"],
+        mdir = vault.dir / "memory"; mdir.mkdir(parents=True, exist_ok=True)
+        mem_entry = {"run_id": run_id, "finished": res_payload["updated"], "version": VERSION,
+                     "jobs": {"scanned": len(jobs), "matched": len(matches), "top": res_payload["jobs"][:10]},
+                     "skill_gaps": skill_gaps, "certs": certs, "today": today_plan}
+        (mdir / f"run_{run_id}.json").write_text(json.dumps(mem_entry, indent=2), "utf-8")
+        (mdir / f"run_{run_id}.md").write_text(f"# Run {run_id}\n- Scanned: {len(jobs)} | Matched: {len(matches)}\n", "utf-8")
+        (mdir / "latest.json").write_text(json.dumps(mem_entry, indent=2), "utf-8")
+        idx_file = mdir / "index.json"
+        idx = json.loads(idx_file.read_text("utf-8")).get("runs", []) if idx_file.exists() else []
+        idx = [{"file": f"run_{run_id}.json", "summary": f"run_{run_id}.md", "run_id": run_id, "finished": res_payload["updated"],
             "scanned": len(jobs), "matched": len(matches), "new_jobs": len(matches), "top_learning": certs[0]["name"], "errors": sum(1 for h in health if h["error"])}] + idx[:89]
-    idx_file.write_text(json.dumps({"runs": idx}, indent=2), "utf-8")
-    log(f"  memory: saved vault/memory/run_{run_id}.json")
-    return {"jobs": jobs, "matches": matches, "insights": insights, "result": res_payload}
+        idx_file.write_text(json.dumps({"runs": idx}, indent=2), "utf-8")
+        log(f"  memory: saved vault/memory/run_{run_id}.json")
+        return {"jobs": jobs, "matches": matches, "insights": insights, "result": res_payload}
 
 
 def main(argv=None):
