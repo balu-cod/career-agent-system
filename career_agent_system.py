@@ -309,11 +309,11 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
         if j["score"] >= floor:
             matches.append(j)
 
-                matches.sort(key=lambda x: (-x["score"], -x["ats"]))
+               matches.sort(key=lambda x: (-x["score"], -x["ats"]))
                 log(f"  matcher: {len(matches)}/{len(jobs)} postings matched >= {floor}")
                 for m in matches[:10]:
                         log(f"    TOP MATCH [{m['score']}] | ATS {m['ats']}% | {m['title']} @ {m['company']} ({m['location']})")
-                certs = [
+               certs = [
             {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
             {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course"},
             {"name": "Full Stack Open - Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free course"}
