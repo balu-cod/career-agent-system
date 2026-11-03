@@ -315,21 +315,21 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
         log(f"    TOP MATCH [{m['score']} | ATS {m['ats']}%] {m['title']} @ {m['company']} ({m['location']}) -> {m['url']}" + (f" [To: {m['hiring_email']}]" if m.get("hiring_email") else ""))
 
     # Write rich report directly to GitHub Actions Step Summary (visible in the GitHub Actions UI)
-    step_summary = os.environ.get("GITHUB_STEP_SUMMARY")
-    if step_summary:
-        try:
-            with open(step_summary, "a", encoding="utf-8") as f:
-                f.write(f"## CAREER_AGENT_SYSTEM v{VERSION} — Live Job Extraction ({dt.date.today()})\n\n")
-                f.write(f"- **Total Scanned:** {len(jobs)} postings across {len(health)} sources\n")
-                f.write(f"- **Total Matched:** {len(matches)} roles (>=60%)\n\n")
-                f.write("| Score | Role | Company | Location |\n| :--- | :--- | :--- | :--- |\n")
-                for m in matches[:15]:
-                    f.write(f"| **{m['score']}%** (ATS {m['ats']}%) | [{m['title']}]({m['url']}) | **{m['company']}** | {m.get('location','Remote')} |\n")
+        step_summary = os.environ.get("GITHUB_STEP_SUMMARY")
+        if step_summary:
+            try:
+                with open(step_summary, "a", encoding="utf-8") as f:
+                    f.write(f"## CAREER_AGENT_SYSTEM v{VERSION} — Live Job Extraction ({dt.date.today()})\n\n")
+                    f.write(f"- **Total Scanned:** {len(jobs)} postings across {len(health)} sources\n")
+                    f.write(f"- **Total Matched:** {len(matches)} roles (>=60%)\n\n")
+                    f.write("| Score | Role | Company | Location |\n| :--- | :--- | :--- | :--- |\n")
+                    for m in matches[:15]:
+                        f.write(f"| **{m['score']}%** (ATS {m['ats']}%) | [{m['title']}]({m['url']}) | **{m['company']}** | {m.get('location','Remote')} |\n")
                log("  [summary] Wrote dynamic job report to GITHUB_STEP_SUMMARY")
-          except Exception as e:
-              log(f"  [summary] Could not write GITHUB_STEP_SUMMARY: {e}")
-    # Autonomous email dispatch via Gmail SMTP
-    send_digest_email(matches, len(jobs), health, recipient="kodimurthybalu@gmail.com", subject=f"Daily Applied Jobs & Career Agent Report - {dt.date.today()}", log=log)    
+              except Exception as e:
+                  log(f"  [summary] Could not write GITHUB_STEP_SUMMARY: {e}")
+        # Autonomous email dispatch via Gmail SMTP
+        send_digest_email(matches, len(jobs), health, recipient="kodimurthybalu@gmail.com", subject=f"Daily Applied Jobs & Career Agent Report - {dt.date.today()}", log=log)    
     cnt = {}
     for j in (matches[:100] or jobs[:100]):
         txt = (j["title"] + " " + j.get("desc", "")).lower()
