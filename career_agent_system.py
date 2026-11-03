@@ -314,8 +314,7 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
     for m in matches[:10]:
         log(f"    TOP MATCH [{m['score']} | ATS {m['ats']}%] {m['title']} @ {m['company']} ({m['location']}) -> {m['url']}" + (f" [To: {m['hiring_email']}]" if m.get("hiring_email") else ""))
 
-          send_digest_email(matches, len(jobs), health, log=log)
-        certs = [
+       certs = [
         {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
             {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course & certificate"},
             {"name": "Full Stack Open — Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free university certificate"}
@@ -351,6 +350,10 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
             "scanned": len(jobs), "matched": len(matches), "new_jobs": len(matches), "top_learning": certs[0]["name"], "errors": sum(1 for h in health if h["error"])}] + idx[:89]
         idx_file.write_text(json.dumps({"runs": idx}, indent=2), "utf-8")
         log(f"  memory: saved vault/memory/run_{run_id}.json")
+            try:
+                send_digest_email(matches, len(jobs), health, log=log)
+        except Exception as e:
+                log(f"[email] {e}")
         return {"jobs": jobs, "matches": matches, "insights": insights, "result": res_payload}
 
 
