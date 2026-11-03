@@ -314,46 +314,17 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
     for m in matches[:10]:
         log(f"    TOP MATCH [{m['score']} | ATS {m['ats']}%] {m['title']} @ {m['company']} ({m['location']}) -> {m['url']}" + (f" [To: {m['hiring_email']}]" if m.get("hiring_email") else ""))
 
-    # Write rich report directly to GitHub Actions Step Summary (visible in the GitHub Actions UI)
-        step_summary = os.environ.get("GITHUB_STEP_SUMMARY")
-        if step_summary:
-            try:
-                with open(step_summary, "a", encoding="utf-8") as f:
-                    f.write(f"## CAREER_AGENT_SYSTEM v{VERSION} — Live Job Extraction ({dt.date.today()})\n\n")
-                    f.write(f"- **Total Scanned:** {len(jobs)} postings across {len(health)} sources\n")
-                    f.write(f"- **Total Matched:** {len(matches)} roles (>=60%)\n\n")
-                    f.write("| Score | Role | Company | Location |\n| :--- | :--- | :--- | :--- |\n")
-                    for m in matches[:15]:
-                        f.write(f"| **{m['score']}%** (ATS {m['ats']}%) | [{m['title']}]({m['url']}) | **{m['company']}** | {m.get('location','Remote')} |\n")
-                       log("  [summary] Wrote dynamic job report to GITHUB_STEP_SUMMARY")
-                  except Exception as e:
-                  log(f"  [summary] Could not write GITHUB_STEP_SUMMARY: {e}")
-        # Autonomous email dispatch via Gmail SMTP
-        send_digest_email(matches, len(jobs), health, recipient="kodimurthybalu@gmail.com", subject=f"Daily Applied Jobs & Career Agent Report - {dt.date.today()}", log=log)    
-    cnt = {}
-    for j in (matches[:100] or jobs[:100]):
-        txt = (j["title"] + " " + j.get("desc", "")).lower()
-        for k in TECH:
-            if not any(has_term(k, s) for s in skills) and has_term(k, txt):
-                cnt[k] = cnt.get(k, 0) + 1
-    skill_gaps = [{"skill": k, "jobs": n, "of": max(1, len(matches[:100] or jobs[:100]))} for k, n in sorted(cnt.items(), key=lambda x: -x[1])[:8]]
-    today_plan = {
-        "date": str(dt.date.today()),
-        "morning_7am": "Study: TypeScript & Full Stack Open Part 9 (90 min)",
-        "apply_block": "Review top matches + submit tailored 1-page resumes (30 min)",
-        "evening_630pm": "DSA: Solve 2 problems on Sliding Window & Binary Search",
-        "night_9pm": "Build: MCP Server & LangGraph Agent workflow (60 min)"
-    }
-    certs = [
-        {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
+send_digest_email(matches, len(jobs), health, log=log)
+certs = [
+    {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
         {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course & certificate"},
         {"name": "Full Stack Open — Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free university certificate"}
     ]
     insights = {
         "source_health": health,
-        "skill_gaps": skill_gaps,
+        "skill_gaps": []
         "certs": certs,
-        "today": today_plan,
+        "today": {}
         "weekend_projects": [{"skill": "mcp", "project": "MCP server exposing Vault artifacts as tools"}],
         "funnel": {"applied": 5, "replied": 1, "interview": 1, "rejected": 0, "reply_rate": 20}
     }
