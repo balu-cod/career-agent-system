@@ -1,0 +1,125 @@
+{
+  "updated": "2026-11-03T03:03:54+00:00",
+  "version": "6.5.0",
+  "scanned": 1811,
+  "jobs": [],
+  "insights": {
+    "source_health": [
+      {
+        "source": "greenhouse:cloudflare",
+        "count": 469,
+        "error": null,
+        "ms": 644
+      },
+      {
+        "source": "greenhouse:databricks",
+        "count": 910,
+        "error": null,
+        "ms": 1109
+      },
+      {
+        "source": "lever:palantir",
+        "count": 0,
+        "error": "The read operation timed out",
+        "ms": 20395
+      },
+      {
+        "source": "remotive",
+        "count": 12,
+        "error": null,
+        "ms": 77
+      },
+      {
+        "source": "arbeitnow",
+        "count": 300,
+        "error": null,
+        "ms": 224
+      },
+      {
+        "source": "hn_hiring",
+        "count": 120,
+        "error": null,
+        "ms": 1124
+      }
+    ],
+    "skill_gaps": [
+      {
+        "skill": "go",
+        "jobs": 520,
+        "of": 1811
+      },
+      {
+        "skill": "aws",
+        "jobs": 436,
+        "of": 1811
+      },
+      {
+        "skill": "azure",
+        "jobs": 398,
+        "of": 1811
+      },
+      {
+        "skill": "gcp",
+        "jobs": 323,
+        "of": 1811
+      },
+      {
+        "skill": "ci/cd",
+        "jobs": 198,
+        "of": 1811
+      },
+      {
+        "skill": "llm",
+        "jobs": 144,
+        "of": 1811
+      },
+      {
+        "skill": "kubernetes",
+        "jobs": 133,
+        "of": 1811
+      },
+      {
+        "skill": "rag",
+        "jobs": 101,
+        "of": 1811
+      }
+    ],
+    "certs": [
+      {
+        "name": "Build APIs with FastAPI and Python",
+        "provider": "Microsoft Learn",
+        "free_claim": "Free learning path"
+      },
+      {
+        "name": "Hugging Face AI Agents & MCP Course",
+        "provider": "Hugging Face",
+        "free_claim": "Free course & certificate"
+      },
+      {
+        "name": "Full Stack Open — Part 9 TypeScript",
+        "provider": "University of Helsinki",
+        "free_claim": "Free university certificate"
+      }
+    ],
+    "today": {
+      "date": "2026-11-03",
+      "morning_7am": "Study: TypeScript & Full Stack Open Part 9 (90 min)",
+      "apply_block": "Review top matches + submit tailored 1-page resumes (30 min)",
+      "evening_630pm": "DSA: Solve 2 problems on Sliding Window & Binary Search",
+      "night_9pm": "Build: MCP Server & LangGraph Agent workflow (60 min)"
+    },
+    "weekend_projects": [
+      {
+        "skill": "mcp",
+        "project": "MCP server exposing Vault artifacts as tools"
+      }
+    ],
+    "funnel": {
+      "applied": 5,
+      "replied": 1,
+      "interview": 1,
+      "rejected": 0,
+      "reply_rate": 20
+    }
+  }
+}
