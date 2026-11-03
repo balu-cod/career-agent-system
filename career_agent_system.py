@@ -325,8 +325,8 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
                     f.write("| Score | Role | Company | Location |\n| :--- | :--- | :--- | :--- |\n")
                     for m in matches[:15]:
                         f.write(f"| **{m['score']}%** (ATS {m['ats']}%) | [{m['title']}]({m['url']}) | **{m['company']}** | {m.get('location','Remote')} |\n")
-               log("  [summary] Wrote dynamic job report to GITHUB_STEP_SUMMARY")
-              except Exception as e:
+                       log("  [summary] Wrote dynamic job report to GITHUB_STEP_SUMMARY")
+                  except Exception as e:
                   log(f"  [summary] Could not write GITHUB_STEP_SUMMARY: {e}")
         # Autonomous email dispatch via Gmail SMTP
         send_digest_email(matches, len(jobs), health, recipient="kodimurthybalu@gmail.com", subject=f"Daily Applied Jobs & Career Agent Report - {dt.date.today()}", log=log)    
