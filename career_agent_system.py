@@ -314,7 +314,7 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
     for m in matches[:10]:
         log(f"    TOP MATCH [{m['score']} | ATS {m['ats']}%] {m['title']} @ {m['company']} ({m['location']}) -> {m['url']}" + (f" [To: {m['hiring_email']}]" if m.get("hiring_email") else ""))
 
-            send_digest_email(matches, len(jobs), health, log=log)
+           send_digest_email(matches, len(jobs), health, log=log)
         certs = [
         {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
             {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course & certificate"},
