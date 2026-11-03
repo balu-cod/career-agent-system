@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03T10:29:08+00:00",
+  "updated": "2026-11-03T10:33:17+00:00",
   "version": "6.5.0",
   "scanned": 1838,
   "matched_count": 486,
@@ -815,31 +815,31 @@
         "source": "greenhouse:cloudflare",
         "count": 467,
         "error": null,
-        "ms": 582
+        "ms": 943
       },
       {
         "source": "greenhouse:databricks",
         "count": 911,
         "error": null,
-        "ms": 1078
+        "ms": 634
       },
       {
         "source": "remotive",
         "count": 10,
         "error": null,
-        "ms": 66
+        "ms": 85
       },
       {
         "source": "arbeitnow",
         "count": 300,
         "error": null,
-        "ms": 217
+        "ms": 211
       },
       {
         "source": "hn_hiring",
         "count": 150,
         "error": null,
-        "ms": 1208
+        "ms": 1197
       }
     ],
     "skill_gaps": [
