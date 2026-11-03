@@ -1,6 +1,20 @@
 #!/usr/bin/env python3
 """Career Agent System v6.5.0 — Unified 19-Agent DAG Orchestrator & Live Pipeline."""
-import argparse, datetime as dt, hashlib, html, json, os, pathlib, re, time, urllib.parse, urllib.request
+import argparse, datetime as dt, hashlib, html, json, os, pathlib, re, time, urllib.parse, urllib.request, smtplib
+from email.mime.text import MIMEText; from email.mime.multipart import MIMEMultipart
+def send_digest_email(matches, scanned_count, health, recipient="kodimurthybalu@gmail.com", subject=None, **kwargs):
+    to_addr = recipient or kwargs.get("to_email") or kwargs.get("to") or "kodimurthybalu@gmail.com"
+    user = os.environ.get("GMAIL_SMTP_USER")
+    passwd = os.environ.get("GMAIL_SMTP_APP_PASSWORD")
+    if not user or not passwd: print("[email] Missing GMAIL_SMTP_USER or GMAIL_SMTP_APP_PASSWORD"); return False
+       if not subject: subject = "Daily Applied Jobs & Career Agent Report - " + str(dt.date.today())
+    msg = MIMEMultipart(); msg["From"] = user; msg["To"] = to_addr; msg["Subject"] = subject
+    body = f"Report: {dt.date.today()}\nScanned: {scanned_count}\nMatches: {len(matches)}\nHealth: {json.dumps(health)}\n"; msg.attach(MIMEText(body, "plain"))
+    try:
+               with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s: s.login(user, passwd); s.sendmail(user, [to_addr], msg.as_string())
+               print(f"[email] Successfully sent email to {to_addr}"); return True
+    except Exception as e: print(f"[email] Error sending email: {e}"); return False
+        
 from concurrent.futures import ThreadPoolExecutor
 
 VERSION = "6.5.0"
@@ -286,7 +300,8 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
             "scanned": len(jobs), "matched": len(matches), "new_jobs": len(matches), "top_learning": certs[0]["name"], "errors": sum(1 for h in health if h["error"])}] + idx[:89]
     idx_file.write_text(json.dumps({"runs": idx}, indent=2), "utf-8")
     log(f"  memory: saved vault/memory/run_{run_id}.json")
-    return {"jobs": jobs, "matches": matches, "insights": insights, "result": res_payload}
+    send_digest_email(matches, len(jobs), health, recipient="kodimurthybalu@gmail.com", subject="Daily Applied Jobs & Career Agent Report - " + str(dt.date.today()))
+return {"jobs": jobs, "matches": matches, "insights": insights, "result": res_payload}
 
 
 def main(argv=None):
