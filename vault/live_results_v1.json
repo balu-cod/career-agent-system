@@ -1,87 +1,887 @@
 {
-  "updated": "2026-11-03T03:03:54+00:00",
+  "updated": "2026-11-03T10:25:38+00:00",
   "version": "6.5.0",
-  "scanned": 1811,
-  "jobs": [],
+  "scanned": 1838,
+  "matched_count": 486,
+  "jobs": [
+    {
+      "id": "hn:50340134",
+      "portal": "hn",
+      "company": "Stratirus (a Tennetech company)",
+      "title": "AI Developer + Linux Admin (junior to mid)",
+      "location": "REMOTE (US only, Central Time hours)",
+      "url": "https://news.ycombinator.com/item?id=50340134",
+      "score": 98,
+      "ats": 75,
+      "skills": [
+        "docker",
+        "linux",
+        "ai agents"
+      ],
+      "missing": [
+        "mcp"
+      ],
+      "hiring_email": "hiring@stratirus.com",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:7619810002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Senior Software Engineer (Infra)",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7619810002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": 3,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:7934782002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Senior Software Engineer - Ingestion",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7934782002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "sql",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:7647353002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Senior Software Engineer- Networking",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7647353002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": 4,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:6865687002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineering Intern (2027)",
+      "location": "Bellevue, Washington; Mountain View, California; San Francisco, California; Vancouver, Canada",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6865687002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8133710002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineering Intern (2027 Start) - Aarhus",
+      "location": "Aarhus, Denmark",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8133710002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:6866534002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineering Intern (2027 Start) - Amsterdam",
+      "location": "Amsterdam, Netherlands",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6866534002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:7640764002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineering Intern (2027 Start) - Belgrade",
+      "location": "Belgrade, Serbia",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7640764002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:6866531002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineering Intern (2027 Start) - Berlin",
+      "location": "Berlin, Germany",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6866531002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8847738002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineering Intern (2027 Start) - London",
+      "location": "London, United Kingdom",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8847738002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:7925560002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Sr. Software Engineer - Observability",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7925560002",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "an:process-automation-engineer-internship-berlin-99980",
+      "portal": "arbeitnow",
+      "company": "Enpal",
+      "title": "Process Automation Engineer - Internship (f/m/d)",
+      "location": "Berlin",
+      "url": "https://www.arbeitnow.com/jobs/companies/enpal/process-automation-engineer-internship-berlin-99980",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "sql",
+        "git"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "an:data-associate-internship-6-months-flexible-start-paris-france-429042",
+      "portal": "arbeitnow",
+      "company": "Alan",
+      "title": "Data Associate - Internship (6 months, flexible start)",
+      "location": "Paris, France",
+      "url": "https://www.arbeitnow.fr/jobs/companies/alan/data-associate-internship-6-months-flexible-start-paris-france-429042",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "sql",
+        "rest",
+        "ai agents"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "an:systems-engineer-excavator-automation-zurich-5810",
+      "portal": "arbeitnow",
+      "company": "Gravis Robotics",
+      "title": "Systems Engineer  (Excavator Automation)",
+      "location": "Zurich",
+      "url": "https://www.arbeitnow.ch/jobs/companies/gravis-robotics/systems-engineer-excavator-automation-zurich-5810",
+      "score": 95,
+      "ats": 100,
+      "skills": [
+        "python",
+        "git",
+        "linux",
+        "c++"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "hn:50342579",
+      "portal": "hn",
+      "company": "Curai",
+      "title": "Remote (US)",
+      "location": "Remote (US)",
+      "url": "https://news.ycombinator.com/item?id=50342579",
+      "score": 93,
+      "ats": 83,
+      "skills": [
+        "python",
+        "react",
+        "docker",
+        "postgresql",
+        "ai agents"
+      ],
+      "missing": [
+        "aws"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "hn:50341345",
+      "portal": "hn",
+      "company": "SadServers",
+      "title": "Software Engineer",
+      "location": "REMOTE (Canada)",
+      "url": "https://news.ycombinator.com/item?id=50341345",
+      "score": 93,
+      "ats": 80,
+      "skills": [
+        "python",
+        "rest",
+        "linux",
+        "ai agents"
+      ],
+      "missing": [
+        "django"
+      ],
+      "hiring_email": "jobs@sadservers.com",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "an:lead-forward-deployed-engineer-paris-370332",
+      "portal": "arbeitnow",
+      "company": "PALO IT",
+      "title": "Lead Forward Deployed Engineer",
+      "location": "PALO IT France",
+      "url": "https://www.arbeitnow.fr/jobs/companies/palo-it/lead-forward-deployed-engineer-paris-370332",
+      "score": 93,
+      "ats": 75,
+      "skills": [
+        "python",
+        "react",
+        "java"
+      ],
+      "missing": [
+        "llm"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "hn:50346358",
+      "portal": "hn",
+      "company": "GovStar",
+      "title": "https://govstar.us",
+      "location": "Remote (U.S. Eastern/Central Time)",
+      "url": "https://news.ycombinator.com/item?id=50346358",
+      "score": 93,
+      "ats": 75,
+      "skills": [
+        "python",
+        "docker",
+        "git"
+      ],
+      "missing": [
+        "ci/cd"
+      ],
+      "hiring_email": "nicholas.hanson@govstar.us",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "hn:50340419",
+      "portal": "hn",
+      "company": "Paramark",
+      "title": "Software Engineer (L4)",
+      "location": "San Francisco HYBRID (3 days/wk) or REMOTE (US)",
+      "url": "https://news.ycombinator.com/item?id=50340419",
+      "score": 93,
+      "ats": 71,
+      "skills": [
+        "python",
+        "fastapi",
+        "react",
+        "rest",
+        "postgresql"
+      ],
+      "missing": [
+        "typescript",
+        "kubernetes"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8320183002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Senior Software Engineer - Backend",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8320183002",
+      "score": 91,
+      "ats": 60,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [
+        "go",
+        "rust"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:6709301002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Senior Software Engineer (Backend)",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6709301002",
+      "score": 91,
+      "ats": 60,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [
+        "go",
+        "rust"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:7955601002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Sr Software Engineer - Backend",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7955601002",
+      "score": 91,
+      "ats": 60,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [
+        "go",
+        "rust"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "hn:50349800",
+      "portal": "hn",
+      "company": "Location: Dorset, UK Remote: Yes (UK, US and EU time zones) ",
+      "title": "Location: Dorset, UK Remote: Yes (UK, US and EU time zones) Willing to relocate: No Technologies: Ru",
+      "location": "Remote",
+      "url": "https://news.ycombinator.com/item?id=50349800",
+      "score": 91,
+      "ats": 60,
+      "skills": [
+        "python",
+        "fastapi",
+        "postgresql"
+      ],
+      "missing": [
+        "aws",
+        "go"
+      ],
+      "hiring_email": "wm@wagnermatos.co.uk",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "hn:50344646",
+      "portal": "hn",
+      "company": "FusionAuth",
+      "title": "Senior/Staff Java Engineers, Account Executive",
+      "location": "Varies between REMOTE (in Europe but only for the account ex",
+      "url": "https://news.ycombinator.com/item?id=50344646",
+      "score": 91,
+      "ats": 60,
+      "skills": [
+        "docker",
+        "postgresql",
+        "java"
+      ],
+      "missing": [
+        "mysql",
+        "kubernetes"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:cloudflare:8223480",
+      "portal": "greenhouse",
+      "company": "cloudflare",
+      "title": "Hardware Systems Engineer",
+      "location": "In-Office",
+      "url": "https://boards.greenhouse.io/cloudflare/jobs/8223480?gh_jid=8223480",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "git",
+        "linux"
+      ],
+      "missing": [],
+      "hiring_email": "hr@cloudflare.com",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:cloudflare:8325821",
+      "portal": "greenhouse",
+      "company": "cloudflare",
+      "title": "Hardware Systems Engineer",
+      "location": "Hybrid",
+      "url": "https://boards.greenhouse.io/cloudflare/jobs/8325821?gh_jid=8325821",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "git",
+        "linux"
+      ],
+      "missing": [],
+      "hiring_email": "hr@cloudflare.com",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:cloudflare:8329741",
+      "portal": "greenhouse",
+      "company": "cloudflare",
+      "title": "Technical Support Engineer, Developer Platform",
+      "location": "Hybrid",
+      "url": "https://boards.greenhouse.io/cloudflare/jobs/8329741?gh_jid=8329741",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "javascript",
+        "sql",
+        "git",
+        "rest",
+        "linux"
+      ],
+      "missing": [],
+      "hiring_email": "hr@cloudflare.com",
+      "min_years": 3,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:6865698002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineer - New Grad (2027 Start)",
+      "location": "Bellevue, Washington; Mountain View, California; San Francisco, California; Vancouver, Canada",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6865698002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8133691002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineer - New Grad (2027 Start) - Aarhus",
+      "location": "Aarhus, Denmark",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8133691002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:6866549002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineer - New Grad (2027 Start) - Amsterdam",
+      "location": "Amsterdam, Netherlands",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6866549002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:6886281002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineer - New Grad (2027 Start) - Berlin",
+      "location": "Berlin, Germany",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6886281002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8847747002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Software Engineer - New Grad (2027 Start) - London",
+      "location": "London, United Kingdom",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8847747002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8429978002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Sr. Product Designer, AI/BI",
+      "location": "Mountain View, California; San Francisco, California; Seattle, Washington",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8429978002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "sql",
+        "react"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8211450002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Sr Software Engineer-Networking",
+      "location": "Bellevue, Washington",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8211450002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": 4,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8211452002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Sr Software Engineer-Networking",
+      "location": "Mountain View, California",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8211452002",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": 4,
+      "status": "new"
+    },
+    {
+      "id": "an:software-engineer-new-grad-2027-start-berlin-199066",
+      "portal": "arbeitnow",
+      "company": "databricks",
+      "title": "Software Engineer - New Grad (2027 Start) - Berlin",
+      "location": "Berlin",
+      "url": "https://www.arbeitnow.com/jobs/companies/databricks/software-engineer-new-grad-2027-start-berlin-199066",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "an:developpeur-python-rd-practice-se-margo-paris-65169",
+      "portal": "arbeitnow",
+      "company": "MARGO",
+      "title": "Développeur Python R&D |  Practice SE MARGO",
+      "location": "Paris",
+      "url": "https://www.arbeitnow.fr/jobs/companies/margo/developpeur-python-rd-practice-se-margo-paris-65169",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "javascript",
+        "linux",
+        "c++"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "an:software-engineer-new-grad-2027-start-amsterdam-401527",
+      "portal": "arbeitnow",
+      "company": "databricks",
+      "title": "Software Engineer - New Grad (2027 Start) - Amsterdam",
+      "location": "Amsterdam",
+      "url": "https://www.arbeitnow.nl/jobs/companies/databricks/software-engineer-new-grad-2027-start-amsterdam-401527",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "c++",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "hn:50340287",
+      "portal": "hn",
+      "company": "JPMorganChase",
+      "title": "Lead Software Engineer",
+      "location": "ONSITE (Jersey City, NJ)",
+      "url": "https://news.ycombinator.com/item?id=50340287",
+      "score": 90,
+      "ats": 100,
+      "skills": [
+        "python",
+        "react",
+        "java"
+      ],
+      "missing": [],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    },
+    {
+      "id": "gh:databricks:8795446002",
+      "portal": "greenhouse",
+      "company": "databricks",
+      "title": "Solutions Architect",
+      "location": "Bengaluru, India",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8795446002",
+      "score": 89,
+      "ats": 50,
+      "skills": [
+        "python",
+        "sql",
+        "java"
+      ],
+      "missing": [
+        "aws",
+        "azure",
+        "gcp"
+      ],
+      "hiring_email": "",
+      "min_years": null,
+      "status": "new"
+    }
+  ],
   "insights": {
     "source_health": [
       {
         "source": "greenhouse:cloudflare",
-        "count": 469,
+        "count": 467,
         "error": null,
-        "ms": 644
+        "ms": 960
       },
       {
         "source": "greenhouse:databricks",
-        "count": 910,
+        "count": 911,
         "error": null,
-        "ms": 1109
-      },
-      {
-        "source": "lever:palantir",
-        "count": 0,
-        "error": "The read operation timed out",
-        "ms": 20395
+        "ms": 804
       },
       {
         "source": "remotive",
-        "count": 12,
+        "count": 10,
         "error": null,
-        "ms": 77
+        "ms": 79
       },
       {
         "source": "arbeitnow",
         "count": 300,
         "error": null,
-        "ms": 224
+        "ms": 163
       },
       {
         "source": "hn_hiring",
-        "count": 120,
+        "count": 150,
         "error": null,
-        "ms": 1124
+        "ms": 978
       }
     ],
     "skill_gaps": [
       {
         "skill": "go",
-        "jobs": 520,
-        "of": 1811
+        "jobs": 29,
+        "of": 100
       },
       {
         "skill": "aws",
-        "jobs": 436,
-        "of": 1811
-      },
-      {
-        "skill": "azure",
-        "jobs": 398,
-        "of": 1811
+        "jobs": 19,
+        "of": 100
       },
       {
         "skill": "gcp",
-        "jobs": 323,
-        "of": 1811
-      },
-      {
-        "skill": "ci/cd",
-        "jobs": 198,
-        "of": 1811
+        "jobs": 16,
+        "of": 100
       },
       {
         "skill": "llm",
-        "jobs": 144,
-        "of": 1811
+        "jobs": 15,
+        "of": 100
       },
       {
-        "skill": "kubernetes",
-        "jobs": 133,
-        "of": 1811
+        "skill": "azure",
+        "jobs": 15,
+        "of": 100
+      },
+      {
+        "skill": "typescript",
+        "jobs": 13,
+        "of": 100
       },
       {
         "skill": "rag",
-        "jobs": 101,
-        "of": 1811
+        "jobs": 9,
+        "of": 100
+      },
+      {
+        "skill": "ci/cd",
+        "jobs": 7,
+        "of": 100
       }
     ],
     "certs": [

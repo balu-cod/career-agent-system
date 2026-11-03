@@ -8,11 +8,11 @@
     "updated": "2026-11-03T03:03:13+00:00"
   },
   "live_results_v1.json": {
-    "sha256": "2e4ddcc9fc4ac8e4950bd08b051879779f5fb4633a95d40e45b0c090a2d1c852",
-    "version": 1,
+    "sha256": "5856f3d16c8766281181d132a5ccb3cbd8fcc2939509baba16781677f62987b5",
+    "version": 2,
     "mime": "application/json",
     "tags": [],
     "owner": "SYSTEM",
-    "updated": "2026-11-03T03:03:54+00:00"
+    "updated": "2026-11-03T10:25:38+00:00"
   }
 }

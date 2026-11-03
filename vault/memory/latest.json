@@ -1,52 +1,246 @@
 {
-  "run_id": "20261103T030313Z",
-  "finished": "2026-11-03T03:03:54+00:00",
+  "run_id": "20261103T102521Z",
+  "finished": "2026-11-03T10:25:38+00:00",
   "version": "6.5.0",
   "jobs": {
-    "scanned": 1811,
-    "matched": 0,
-    "top": []
+    "scanned": 1838,
+    "matched": 486,
+    "top": [
+      {
+        "id": "hn:50340134",
+        "portal": "hn",
+        "company": "Stratirus (a Tennetech company)",
+        "title": "AI Developer + Linux Admin (junior to mid)",
+        "location": "REMOTE (US only, Central Time hours)",
+        "url": "https://news.ycombinator.com/item?id=50340134",
+        "score": 98,
+        "ats": 75,
+        "skills": [
+          "docker",
+          "linux",
+          "ai agents"
+        ],
+        "missing": [
+          "mcp"
+        ],
+        "hiring_email": "hiring@stratirus.com",
+        "min_years": null,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:7619810002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Senior Software Engineer (Infra)",
+        "location": "Bengaluru, India",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7619810002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": 3,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:7934782002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Senior Software Engineer - Ingestion",
+        "location": "Bengaluru, India",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7934782002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "sql",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": null,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:7647353002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Senior Software Engineer- Networking",
+        "location": "Bengaluru, India",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7647353002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": 4,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:6865687002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Software Engineering Intern (2027)",
+        "location": "Bellevue, Washington; Mountain View, California; San Francisco, California; Vancouver, Canada",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6865687002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": null,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:8133710002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Software Engineering Intern (2027 Start) - Aarhus",
+        "location": "Aarhus, Denmark",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8133710002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": null,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:6866534002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Software Engineering Intern (2027 Start) - Amsterdam",
+        "location": "Amsterdam, Netherlands",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6866534002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": null,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:7640764002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Software Engineering Intern (2027 Start) - Belgrade",
+        "location": "Belgrade, Serbia",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=7640764002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": null,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:6866531002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Software Engineering Intern (2027 Start) - Berlin",
+        "location": "Berlin, Germany",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=6866531002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": null,
+        "status": "new"
+      },
+      {
+        "id": "gh:databricks:8847738002",
+        "portal": "greenhouse",
+        "company": "databricks",
+        "title": "Software Engineering Intern (2027 Start) - London",
+        "location": "London, United Kingdom",
+        "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8847738002",
+        "score": 95,
+        "ats": 100,
+        "skills": [
+          "python",
+          "c++",
+          "java"
+        ],
+        "missing": [],
+        "hiring_email": "",
+        "min_years": null,
+        "status": "new"
+      }
+    ]
   },
   "skill_gaps": [
     {
       "skill": "go",
-      "jobs": 520,
-      "of": 1811
+      "jobs": 29,
+      "of": 100
     },
     {
       "skill": "aws",
-      "jobs": 436,
-      "of": 1811
-    },
-    {
-      "skill": "azure",
-      "jobs": 398,
-      "of": 1811
+      "jobs": 19,
+      "of": 100
     },
     {
       "skill": "gcp",
-      "jobs": 323,
-      "of": 1811
-    },
-    {
-      "skill": "ci/cd",
-      "jobs": 198,
-      "of": 1811
+      "jobs": 16,
+      "of": 100
     },
     {
       "skill": "llm",
-      "jobs": 144,
-      "of": 1811
+      "jobs": 15,
+      "of": 100
     },
     {
-      "skill": "kubernetes",
-      "jobs": 133,
-      "of": 1811
+      "skill": "azure",
+      "jobs": 15,
+      "of": 100
+    },
+    {
+      "skill": "typescript",
+      "jobs": 13,
+      "of": 100
     },
     {
       "skill": "rag",
-      "jobs": 101,
-      "of": 1811
+      "jobs": 9,
+      "of": 100
+    },
+    {
+      "skill": "ci/cd",
+      "jobs": 7,
+      "of": 100
     }
   ],
   "certs": [
