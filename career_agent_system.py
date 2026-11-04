@@ -316,8 +316,8 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
                certs = [
             {"name": "Build APIs with FastAPI and Python", "provider": "Microsoft Learn", "free_claim": "Free learning path"},
             {"name": "Hugging Face AI Agents & MCP Course", "provider": "Hugging Face", "free_claim": "Free course"},
-            {"name": "Full Stack Open - Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free course"}
-    ]
+                    {"name": "Full Stack Open - Part 9 TypeScript", "provider": "University of Helsinki", "free_claim": "Free course"}
+    ]    
         insights = {
             "source_health": health,
             "skill_gaps": [],
