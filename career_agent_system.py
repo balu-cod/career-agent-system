@@ -339,7 +339,7 @@ def run_pipeline(vault, log=print, fetch_fn=get_json):
         mdir = vault.dir / "memory"; mdir.mkdir(parents=True, exist_ok=True)
         mem_entry = {"run_id": run_id, "finished": res_payload["updated"], "version": VERSION,
                      "jobs": {"scanned": len(jobs), "matched": len(matches), "top": res_payload["jobs"][:10]},
-                     "skill_gaps": skill_gaps, "certs": certs, "today": today_plan}
+                     "skill_gaps": [], "certs": certs, "today": {}}
         (mdir / f"run_{run_id}.json").write_text(json.dumps(mem_entry, indent=2), "utf-8")
         (mdir / f"run_{run_id}.md").write_text(f"# Run {run_id}\n- Scanned: {len(jobs)} | Matched: {len(matches)}\n", "utf-8")
         (mdir / "latest.json").write_text(json.dumps(mem_entry, indent=2), "utf-8")
